@@ -1,5 +1,5 @@
-import React from 'react';
-import { createSwitchNavigator } from 'react-navigation';
+import React from '../../../Library/Caches/typescript/2.9/node_modules/@types/react';
+import { createSwitchNavigator } from '../../../Library/Caches/typescript/2.9/node_modules/@types/react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 

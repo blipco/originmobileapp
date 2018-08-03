@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '../../../Library/Caches/typescript/2.9/node_modules/@types/react';
 import {
   Image,
   Platform,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
+import { WebBrowser } from '../../../Library/Caches/typescript/2.9/node_modules/@types/expo';
 
 import { MonoText } from '../components/StyledText';
 
