@@ -15,7 +15,14 @@
   },
   "AccessToken": {
     "dataSource": "MongoDB",
-    "public": false
+    "public": false,
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "user",
+        "foreignKey": "userId"
+      }
+    }
   },
   "ACL": {
     "dataSource": "MongoDB",
