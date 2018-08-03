@@ -1,4 +1,4 @@
-import React from '../../../Library/Caches/typescript/2.9/node_modules/@types/react';
+import React from 'react';
 import {
   Image,
   Platform,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from '../../../Library/Caches/typescript/2.9/node_modules/@types/expo';
+import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
@@ -35,7 +35,7 @@ export default class HomeScreen extends React.Component {
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
-            <Text style={styles.getStartedText}>Get started by opening</Text>
+            <Text style={styles.getStartedText}>Get started by opening it up</Text>
 
             <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
               <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
