@@ -1,4 +1,6 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from './rootStore';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
@@ -19,10 +21,12 @@ export default class App extends React.Component {
       );
     } else {
       return (
+        <Provider store={store}>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <AppNavigator />
         </View>
+        </Provider>
       );
     }
   }
