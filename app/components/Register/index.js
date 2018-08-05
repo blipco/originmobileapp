@@ -8,6 +8,7 @@ function mapStoreToProps(store) {
         email: store.registerData.email,
         phone: store.registerData.phone,
         password: store.registerData.password,
+        password2: store.registerData.password2
     };
 }
 

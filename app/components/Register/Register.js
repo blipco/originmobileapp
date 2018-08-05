@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { firstNameEntry, lastNameEntry, emailEntry, phoneEntry, passwordEntry } from './registerActions';
+import { firstNameEntry, lastNameEntry, emailEntry, phoneEntry, passwordEntry, password2Entry } from './registerActions';
 import { StyleSheet, Text, View, TextInput, Linking, Alert, ScrollView } from 'react-native';
 import { FormLabel, FormInput, Button, FormValidationMessage, Icon } from 'react-native-elements';
 
@@ -13,6 +13,8 @@ export default class Register extends React.Component {
         this.handleEmailInput = this.handleEmailInput.bind(this);
         this.handlePhoneInput = this.handlePhoneInput.bind(this);
         this.handlePasswordInput = this.handlePasswordInput.bind(this);
+        this.handlePassword2Input = this.handlePassword2Input.bind(this);
+        this.handleRegistration = this.handleRegistration.bind(this);
     }
 
     handleFirstNameInput(fname) {
@@ -45,6 +47,31 @@ export default class Register extends React.Component {
         dispatch(password2Entry(pw2));
     }
 
+    handleRegistration() {
+        const { first_name, last_name, email, phone, password, password2 } = this.props;
+        console.log(first_name, last_name, email, phone, password, password2);
+        //const { navigate } = this.props.navigation;
+
+        if (first_name == '' || last_name == '' || email == '' || phone == '' || password == '' || password2 == '') {
+            Alert.alert(
+                'Form Error',
+                'Complete all fields to submit', [{
+                    text: 'OK',
+                    onPress: null,
+                    style: 'cancel'
+                }]
+            )
+        } //else {
+        //     const signUpObj = {
+        //         "first_name": first_name,
+        //         "last_name": last_name,
+        //         "email": email,
+        //         "password": password,
+        //     }
+        //     dispatch(signUpEntry(signUpObj, navigate));
+        // }
+    }
+
 
     render() {
         return (
@@ -65,6 +92,7 @@ export default class Register extends React.Component {
                         <FormInput onChangeText={this.handlePassword2Input} />
                     </View>
                     <Button style={styles.button}
+                        onPress={this.handleRegistration}
                         backgroundColor={'#346abb'}
                         borderRadius={3}
                         medium

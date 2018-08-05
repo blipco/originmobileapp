@@ -4,7 +4,7 @@ const defaultState = {
     email: '',
     phone: '',
     password: '',
-    password2: '',
+    password2: ''
 }
 
 export default function registerReducer(state = defaultState, action) {
@@ -45,7 +45,7 @@ export default function registerReducer(state = defaultState, action) {
         case 'PASSWORD2_ENTRY': {
             return {
                 ...state,
-                password: payload
+                password2: payload
             }
         }
         default: {
