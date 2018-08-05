@@ -12,6 +12,13 @@ export function lastNameEntry(lname) {
     }
 }
 
+export function studentIdEntry(studentId) {
+    return {
+        type: 'STUDENT_ID_ENTRY',
+        payload: studentId
+    }
+}
+
 export function emailEntry(email) {
     return {
         type: 'EMAIL_ENTRY',
@@ -37,5 +44,12 @@ export function password2Entry(pw2) {//will need not need
     return {
         type: 'PASSWORD2_ENTRY',
         payload: pw2
+    }
+}
+
+export function deviceIDEntry(deviceId) {
+    return {
+        type: 'DEVICE_ID_ENTRY',
+        payload: deviceId
     }
 }

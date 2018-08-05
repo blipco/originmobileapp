@@ -1,10 +1,12 @@
 const defaultState = {
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
+    studentId: '',
     email: '',
     phone: '',
     password: '',
-    password2: ''
+    password2: '',
+    deviceId: ''
 }
 
 export default function registerReducer(state = defaultState, action) {
@@ -15,13 +17,19 @@ export default function registerReducer(state = defaultState, action) {
         case 'FIRST_NAME_ENTRY': {
             return {
                 ...state,
-                first_name: payload
+                firstName: payload
             }
         }
         case 'LAST_NAME_ENTRY': {
             return {
                 ...state,
-                last_name: payload
+                lastName: payload
+            }
+        }
+        case 'STUDENT_ID_ENTRY': {
+            return {
+                ...state,
+                studentId: payload
             }
         }
         case 'EMAIL_ENTRY': {
@@ -46,6 +54,12 @@ export default function registerReducer(state = defaultState, action) {
             return {
                 ...state,
                 password2: payload
+            }
+        }
+        case 'DEVICE_ID_ENTRY': {
+            return {
+                ...state,
+                deviceId: payload
             }
         }
         default: {

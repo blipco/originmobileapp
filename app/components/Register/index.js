@@ -3,12 +3,14 @@ import Register from './Register';
 
 function mapStoreToProps(store) {
     return {
-        first_name: store.registerData.first_name,
-        last_name: store.registerData.last_name,
+        firstName: store.registerData.firstName,
+        lastName: store.registerData.lastName,
+        studentId: store.registerData.studentId,
         email: store.registerData.email,
         phone: store.registerData.phone,
         password: store.registerData.password,
-        password2: store.registerData.password2
+        password2: store.registerData.password2,
+        deviceId: store.registerData.deviceId
     };
 }
 

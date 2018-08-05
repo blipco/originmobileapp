@@ -1,6 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { firstNameEntry, lastNameEntry, emailEntry, phoneEntry, passwordEntry, password2Entry } from './registerActions';
+import { firstNameEntry, lastNameEntry, studentIdEntry, emailEntry, phoneEntry, passwordEntry, password2Entry, registerStudent } from './registerActions';
 import { StyleSheet, Text, View, TextInput, Linking, Alert, ScrollView } from 'react-native';
 import { FormLabel, FormInput, Button, FormValidationMessage, Icon } from 'react-native-elements';
 
@@ -10,6 +9,7 @@ export default class Register extends React.Component {
 
         this.handleFirstNameInput = this.handleFirstNameInput.bind(this);
         this.handleLastNameInput = this.handleLastNameInput.bind(this);
+        this.handleStudentIDInput = this.handleStudentIDInput.bind(this);
         this.handleEmailInput = this.handleEmailInput.bind(this);
         this.handlePhoneInput = this.handlePhoneInput.bind(this);
         this.handlePasswordInput = this.handlePasswordInput.bind(this);
@@ -25,6 +25,11 @@ export default class Register extends React.Component {
     handleLastNameInput(lname) {
         const { dispatch } = this.props;
         dispatch(lastNameEntry(lname));
+    }
+
+    handleStudentIDInput(sID) {
+        const { dispatch } = this.props;
+        dispatch(studentIdEntry(sID));
     }
 
     handleEmailInput(email) {
@@ -48,11 +53,11 @@ export default class Register extends React.Component {
     }
 
     handleRegistration() {
-        const { first_name, last_name, email, phone, password, password2 } = this.props;
-        console.log(first_name, last_name, email, phone, password, password2);
+        const { firstName, lastName, studentId, email, phone, password, password2, deviceId } = this.props;
+        console.log(firstName, lastName, studentId, email, phone, password, password2, deviceId);
         //const { navigate } = this.props.navigation;
 
-        if (first_name == '' || last_name == '' || email == '' || phone == '' || password == '' || password2 == '') {
+        if (firstName == '' || lastName == '' || studentId == '' || email == '' || phone == '' || password == '' || password2 == '') {
             Alert.alert(
                 'Form Error',
                 'Complete all fields to submit', [{
@@ -60,16 +65,30 @@ export default class Register extends React.Component {
                     onPress: null,
                     style: 'cancel'
                 }]
-            )
-        } //else {
-        //     const signUpObj = {
-        //         "first_name": first_name,
-        //         "last_name": last_name,
-        //         "email": email,
-        //         "password": password,
-        //     }
-        //     dispatch(signUpEntry(signUpObj, navigate));
+            );
+        }
+        // else if (password.equals(password2) != 0) {
+        //     Alert.alert(
+        //         'Passwords do not match',[{
+        //             text: 'OK',
+        //             onPress: null,
+        //             style: 'cancel'
+        //         }]
+        //     )
         // }
+
+        else {
+            const newStudentReg = {
+                "firstName": firstName,
+                "lastName": lastName,
+                "studentId": studentId,
+                "email": email,
+                "phone": phone,
+                "password": password,
+                "deviceId": deviceId
+            }
+            //dispatch(registerStudent(newStudentReg));
+        }
     }
 
 
@@ -82,13 +101,15 @@ export default class Register extends React.Component {
                         <FormInput onChangeText={this.handleFirstNameInput} />
                         <FormLabel>Last Name</FormLabel>
                         <FormInput onChangeText={this.handleLastNameInput} />
+                        <FormLabel>Student ID</FormLabel>
+                        <FormInput onChangeText={this.handleStudentIDInput} />
                         <FormLabel>Email</FormLabel>
                         <FormInput onChangeText={this.handleEmailInput} />
                         <FormLabel>Phone Number</FormLabel>
                         <FormInput onChangeText={this.handlePhoneInput} />
                         <FormLabel>Password</FormLabel>
                         <FormInput onChangeText={this.handlePasswordInput} />
-                        <FormLabel>Re-Type Password</FormLabel>
+                        <FormLabel>Confirm Password</FormLabel>
                         <FormInput onChangeText={this.handlePassword2Input} />
                     </View>
                     <Button style={styles.button}
@@ -117,17 +138,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         width: 320
     },
-    socialButtonsContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        width: 350,
-        paddingTop: 8,
-        paddingHorizontal: 25
-    },
     formContainer: {
         width: 350
-    },
-    switchToLogin: {
     }
 });
