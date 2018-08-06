@@ -1,7 +1,8 @@
 import React from 'react';
-import { firstNameEntry, lastNameEntry, studentIdEntry, emailEntry, phoneEntry, passwordEntry, password2Entry, registerStudent } from './registerActions';
+import { firstNameEntry, lastNameEntry, studentIdEntry, emailEntry, phoneEntry, passwordEntry, password2Entry, registerUser } from './registerActions';
 import { StyleSheet, Text, View, TextInput, Linking, Alert, ScrollView } from 'react-native';
 import { FormLabel, FormInput, Button, FormValidationMessage, Icon } from 'react-native-elements';
+var DeviceInfo = require('react-native-device-info');
 
 export default class Register extends React.Component {
     constructor(props) {
@@ -17,6 +18,11 @@ export default class Register extends React.Component {
         this.handleRegistration = this.handleRegistration.bind(this);
     }
 
+    handleStudentIDInput(sID) {
+        const { dispatch } = this.props;
+        dispatch(studentIdEntry(sID));
+    }
+
     handleFirstNameInput(fname) {
         const { dispatch } = this.props;
         dispatch(firstNameEntry(fname));
@@ -25,11 +31,6 @@ export default class Register extends React.Component {
     handleLastNameInput(lname) {
         const { dispatch } = this.props;
         dispatch(lastNameEntry(lname));
-    }
-
-    handleStudentIDInput(sID) {
-        const { dispatch } = this.props;
-        dispatch(studentIdEntry(sID));
     }
 
     handleEmailInput(email) {
@@ -53,8 +54,9 @@ export default class Register extends React.Component {
     }
 
     handleRegistration() {
-        const { firstName, lastName, studentId, email, phone, password, password2, deviceId } = this.props;
+        const { firstName, lastName, studentId, email, phone, password, password2, deviceId, dispatch } = this.props;
         console.log(firstName, lastName, studentId, email, phone, password, password2, deviceId);
+        console.log('Device Info', DeviceInfo);
         //const { navigate } = this.props.navigation;
 
         if (firstName == '' || lastName == '' || studentId == '' || email == '' || phone == '' || password == '' || password2 == '') {
@@ -67,42 +69,41 @@ export default class Register extends React.Component {
                 }]
             );
         }
-        // else if (password.equals(password2) != 0) {
+        // else if(5>1) {
         //     Alert.alert(
-        //         'Passwords do not match',[{
+        //         'Passwords do not match', [{
         //             text: 'OK',
         //             onPress: null,
         //             style: 'cancel'
         //         }]
         //     )
         // }
-
         else {
             const newStudentReg = {
+                "studentId": studentId,
                 "firstName": firstName,
                 "lastName": lastName,
-                "studentId": studentId,
                 "email": email,
-                "phone": phone,
-                "password": password,
-                "deviceId": deviceId
+                "phoneNumber": phone,
+                "deviceId": deviceId,
+                "password": password
+
             }
-            //dispatch(registerStudent(newStudentReg));
+            dispatch(registerUser(newStudentReg));
         }
     }
-
 
     render() {
         return (
             <ScrollView keyboardDismissMode='on-drag'>
                 <View style={styles.container}>
                     <View style={styles.formContainer}>
+                        <FormLabel>Student ID</FormLabel>
+                        <FormInput onChangeText={this.handleStudentIDInput} />
                         <FormLabel>First Name </FormLabel>
                         <FormInput onChangeText={this.handleFirstNameInput} />
                         <FormLabel>Last Name</FormLabel>
                         <FormInput onChangeText={this.handleLastNameInput} />
-                        <FormLabel>Student ID</FormLabel>
-                        <FormInput onChangeText={this.handleStudentIDInput} />
                         <FormLabel>Email</FormLabel>
                         <FormInput onChangeText={this.handleEmailInput} />
                         <FormLabel>Phone Number</FormLabel>

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export function firstNameEntry(fname) {
     return {
         type: 'FIRST_NAME_ENTRY',
@@ -51,5 +53,18 @@ export function deviceIDEntry(deviceId) {
     return {
         type: 'DEVICE_ID_ENTRY',
         payload: deviceId
+    }
+}
+
+export function registerUser(newUserReg) {
+    newUserReg.deviceId = 'Abc123'
+    console.log(newUserReg);
+
+
+    return {
+        type: 'USER_REGISTRATION',
+        payload: axios.post('https://035f53a0.ngrok.io/api/users', newUserReg )
+            .then(response => console.log(response.data))
+            .catch(err => console.log(err))
     }
 }
