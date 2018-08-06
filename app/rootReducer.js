@@ -1,8 +1,8 @@
-import { combineReducers } from redux;
-import register from './components/Register/registerReducer';
+import { combineReducers } from 'redux';
+import RegisterReducer from './components/Register/registerReducer';
 
 const rootReducer = combineReducers({
-    registerData: registerReducer
+    registerData: RegisterReducer
 });
 
 export default rootReducer;

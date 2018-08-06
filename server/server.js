@@ -2,8 +2,14 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-
+var bodyParser = require('body-parser');
 var app = module.exports = loopback();
+
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+
 
 app.start = function() {
   // start the web server
