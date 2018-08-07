@@ -1,9 +1,27 @@
 import React from 'react';
+import { StyleSheet, 
+  Text, 
+  View, 
+  TextInput, 
+  Linking, 
+  Alert, 
+  ScrollView } from 'react-native';
+  import { connect } from 'react-redux';
 
-export default class CheckIn extends React.Component {
+class CheckIn extends React.Component {
   render() {
     return(
-      A
+      <View>
+        
+      </View>
     )
   }
+    
 }
+function mapStoreToProps(store) {
+  return {
+      
+  };
+}
+
+export default connect(mapStoreToProps)(CheckIn);

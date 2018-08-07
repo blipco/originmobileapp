@@ -30,9 +30,9 @@ export default class App extends React.Component {
       );
     } else {
       const AppRoot = createStackNavigator({
-        Login: { screen: LoginScreen },
         Register: { screen: RegisterScreen },
 
+        Login: { screen: LoginScreen },
         Checkin: { screen: CheckInScreen }
       })
       return (

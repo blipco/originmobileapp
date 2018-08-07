@@ -1,24 +1,30 @@
 import React from 'react';
-import { firstNameEntry, 
-         lastNameEntry, 
-         studentIdEntry, 
-         emailEntry, 
-         phoneEntry, 
-         passwordEntry, 
-         password2Entry, 
-         registerUser } from './RegisterActions';
-import { StyleSheet, 
-         Text, 
-         View, 
-         TextInput, 
-         Linking, 
-         Alert, 
-         ScrollView } from 'react-native';
-import { FormLabel, 
-         FormInput, 
-         Button, 
-         FormValidationMessage, 
-         Icon } from 'react-native-elements';
+import {
+    firstNameEntry,
+    lastNameEntry,
+    studentIdEntry,
+    emailEntry,
+    phoneEntry,
+    passwordEntry,
+    password2Entry,
+    registerUser
+} from './RegisterActions';
+import {
+    StyleSheet,
+    Text,
+    View,
+    TextInput,
+    Linking,
+    Alert,
+    ScrollView
+} from 'react-native';
+import {
+    FormLabel,
+    FormInput,
+    Button,
+    FormValidationMessage,
+    Icon
+} from 'react-native-elements';
 import { connect } from 'react-redux';
 
 
@@ -74,9 +80,6 @@ class Register extends React.Component {
     handleRegistration() {
         const { firstName, lastName, studentId, email, phone, password, password2, deviceId, dispatch } = this.props;
         console.log(firstName, lastName, studentId, email, phone, password, password2, deviceId);
-        console.log('Device Info', DeviceInfo);
-        //const { navigate } = this.props.navigation;
-
         if (firstName == '' || lastName == '' || studentId == '' || email == '' || phone == '' || password == '' || password2 == '') {
             Alert.alert(
                 'Form Error',
@@ -86,16 +89,39 @@ class Register extends React.Component {
                     style: 'cancel'
                 }]
             );
-        }
-        
-        else {
-            const newStudentReg = {studentId, 
-                                   firstName, 
-                                   lastName, 
-                                   email, 
-                                   phoneNumber, 
-                                   deviceId}
-            dispatch(registerUser(newStudentReg));
+        } else {
+            if (password.length < 6) {
+                Alert.alert(
+                    'Form Error',
+                    'Password needs to be at least 6 characters', [{
+                        text: 'OK',
+                        onPress: null,
+                        style: 'cancel'
+                    }]
+                )
+            } else {
+                if (password !== password2) {
+                    Alert.alert(
+                        'Form Error',
+                        'Password does not match', [{
+                            text: 'OK',
+                            onPress: null,
+                            style: 'cancel'
+                        }]
+                    )
+                }
+                else {
+                    const newStudentReg = {
+                        studentId,
+                        firstName,
+                        lastName,
+                        email,
+                        phoneNumber,
+                        deviceId
+                    }
+                    dispatch(registerUser(newStudentReg));
+                }
+            }
         }
     }
 
