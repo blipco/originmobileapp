@@ -6,5 +6,4 @@ export default class CheckIn extends React.Component {
       A
     )
   }
-    
 }

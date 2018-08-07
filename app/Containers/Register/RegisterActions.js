@@ -35,17 +35,17 @@ export function phoneEntry(phone) {
     }
 }
 
-export function passwordEntry(pw) {
+export function passwordEntry(password) {
     return {
         type: 'PASSWORD_ENTRY',
-        payload: pw
+        payload: password
     }
 }
 
-export function password2Entry(pw2) {//will need not need
+export function password2Entry(password2) {//will need not need
     return {
         type: 'PASSWORD2_ENTRY',
-        payload: pw2
+        payload: password2
     }
 }
 

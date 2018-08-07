@@ -61,14 +61,14 @@ class Register extends React.Component {
         dispatch(phoneEntry(phone));
     }
 
-    handlePasswordInput(pw) {
+    handlePasswordInput(password) {
         const { dispatch } = this.props;
-        dispatch(passwordEntry(pw));
+        dispatch(passwordEntry(password));
     }
 
-    handlePassword2Input(pw2) {
+    handlePassword2Input(password2) {
         const { dispatch } = this.props;
-        dispatch(password2Entry(pw2));
+        dispatch(password2Entry(password2));
     }
 
     handleRegistration() {
@@ -87,26 +87,14 @@ class Register extends React.Component {
                 }]
             );
         }
-        // else if(5>1) {
-        //     Alert.alert(
-        //         'Passwords do not match', [{
-        //             text: 'OK',
-        //             onPress: null,
-        //             style: 'cancel'
-        //         }]
-        //     )
-        // }
+        
         else {
-            const newStudentReg = {
-                "studentId": studentId,
-                "firstName": firstName,
-                "lastName": lastName,
-                "email": email,
-                "phoneNumber": phone,
-                "deviceId": deviceId,
-                "password": password
-
-            }
+            const newStudentReg = {studentId, 
+                                   firstName, 
+                                   lastName, 
+                                   email, 
+                                   phoneNumber, 
+                                   deviceId}
             dispatch(registerUser(newStudentReg));
         }
     }
