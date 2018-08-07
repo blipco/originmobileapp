@@ -14,16 +14,12 @@ import  CheckInScreen  from './Containers/CheckIn/CheckInScreen';
 import  LoginScreen  from './Containers/Login/LoginScreen';
 import  RegisterScreen  from './Containers/Register/RegisterScreen';
 
-
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   };
 
   render() {
-    
-    
-    
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
