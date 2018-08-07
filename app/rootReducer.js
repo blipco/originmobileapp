@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import RegisterReducer from './components/Register/registerReducer';
+import RegisterReducer from './Containers/Register/RegisterReducer';
 
 const rootReducer = combineReducers({
     registerData: RegisterReducer
