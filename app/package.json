@@ -14,10 +14,20 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "axios": "^0.18.0",
     "expo": "29.0.0",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
-    "react-navigation": "^2.9.3"
+    "react-native-device-info": "^0.22.2",
+    "react-native-elements": "^0.19.1",
+    "react-native-expo-geofence": "^0.1.6",
+    "react-native-hyperlink": "0.0.14",
+    "react-native-keyboard-aware-scroll-view": "^0.6.0",
+    "react-native-splash-screen": "^3.1.1",
+    "react-navigation": "^2.11.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-promise-middleware": "^5.1.1"
   },
   "devDependencies": {
     "jest-expo": "29.0.0"

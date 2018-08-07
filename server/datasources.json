@@ -2,5 +2,10 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "MongoDB": {
+    "port": 0,
+    "name": "MongoDB",
+    "connector": "mongodb"
   }
 }

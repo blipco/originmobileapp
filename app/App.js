@@ -1,7 +1,18 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { AppLoading, Asset, Font, Icon } from 'expo';
-import AppNavigator from './navigation/AppNavigator';
+import { Provider } from 'react-redux';
+import store from './rootStore';
+import { Platform, 
+         StatusBar, 
+         StyleSheet, 
+         View } from 'react-native';
+import { AppLoading, 
+         Asset, 
+         Font, 
+         Icon } from 'expo';
+import { createStackNavigator } from 'react-navigation';
+import  CheckInScreen  from './Containers/CheckIn/CheckInScreen';
+import  LoginScreen  from './Containers/Login/LoginScreen';
+import  RegisterScreen  from './Containers/Register/RegisterScreen';
 
 export default class App extends React.Component {
   state = {
@@ -18,11 +29,16 @@ export default class App extends React.Component {
         />
       );
     } else {
+      const AppRoot = createStackNavigator({
+        Login: { screen: LoginScreen },
+        Register: { screen: RegisterScreen },
+
+        Checkin: { screen: CheckInScreen }
+      })
       return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
-        </View>
+        <Provider store={store}>
+          <AppRoot />
+        </Provider>
       );
     }
   }
