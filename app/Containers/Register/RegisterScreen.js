@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import Register from '../components/Register';
+import Register from './Register';
 
 export default class RegisterScreen extends React.Component {
     static navigationOptions = {
@@ -8,9 +8,10 @@ export default class RegisterScreen extends React.Component {
     };
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <ScrollView style={styles.container}>
-                <Register />
+                <Register navigation={this.props.navigation}/>
             </ScrollView>
         );
     }

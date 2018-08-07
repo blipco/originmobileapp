@@ -1,10 +1,28 @@
 import React from 'react';
-import { firstNameEntry, lastNameEntry, studentIdEntry, emailEntry, phoneEntry, passwordEntry, password2Entry, registerUser } from './registerActions';
-import { StyleSheet, Text, View, TextInput, Linking, Alert, ScrollView } from 'react-native';
-import { FormLabel, FormInput, Button, FormValidationMessage, Icon } from 'react-native-elements';
-var DeviceInfo = require('react-native-device-info');
+import { firstNameEntry, 
+         lastNameEntry, 
+         studentIdEntry, 
+         emailEntry, 
+         phoneEntry, 
+         passwordEntry, 
+         password2Entry, 
+         registerUser } from './RegisterActions';
+import { StyleSheet, 
+         Text, 
+         View, 
+         TextInput, 
+         Linking, 
+         Alert, 
+         ScrollView } from 'react-native';
+import { FormLabel, 
+         FormInput, 
+         Button, 
+         FormValidationMessage, 
+         Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 
-export default class Register extends React.Component {
+
+class Register extends React.Component {
     constructor(props) {
         super(props);
 
@@ -123,7 +141,7 @@ export default class Register extends React.Component {
                 </View>
             </ScrollView>
         )
-    }
+    };
 }
 
 const styles = StyleSheet.create({
@@ -143,3 +161,17 @@ const styles = StyleSheet.create({
         width: 350
     }
 });
+function mapStoreToProps(store) {
+    return {
+        firstName: store.registerData.firstName,
+        lastName: store.registerData.lastName,
+        studentId: store.registerData.studentId,
+        email: store.registerData.email,
+        phone: store.registerData.phone,
+        password: store.registerData.password,
+        password2: store.registerData.password2,
+        deviceId: store.registerData.deviceId
+    };
+}
+
+export default connect(mapStoreToProps)(Register);
