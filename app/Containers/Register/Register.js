@@ -78,11 +78,12 @@ class Register extends React.Component {
     }
 
     handleRegistration() {
-        const { firstName, lastName, studentId, email, phone, password, password2, deviceId, dispatch } = this.props;
+        const { navigation, firstName, lastName, studentId, email, phone, password, password2, deviceId, dispatch } = this.props;
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         console.log(firstName, lastName, studentId, email, phone, password, password2, deviceId);
         if (firstName == '' || lastName == '' || studentId == '' || email == '' || phone == '' || password == '' || password2 == '') {
             Alert.alert(
-                'Form Error',
+                'Field Error',
                 'Complete all fields to submit', [{
                     text: 'OK',
                     onPress: null,
@@ -92,7 +93,7 @@ class Register extends React.Component {
         } else {
             if (password.length < 6) {
                 Alert.alert(
-                    'Form Error',
+                    'Password Error',
                     'Password needs to be at least 6 characters', [{
                         text: 'OK',
                         onPress: null,
@@ -102,24 +103,35 @@ class Register extends React.Component {
             } else {
                 if (password !== password2) {
                     Alert.alert(
-                        'Form Error',
+                        'Password Error',
                         'Password does not match', [{
                             text: 'OK',
                             onPress: null,
                             style: 'cancel'
                         }]
                     )
-                }
-                else {
-                    const newStudentReg = {
-                        studentId,
-                        firstName,
-                        lastName,
-                        email,
-                        phoneNumber,
-                        deviceId
+                } else {
+                    if (reg.test(email) === false) {
+                        Alert.alert(
+                            'Email Error',
+                            'Email is not complete', [{
+                                text: 'OK',
+                                onPress: null,
+                                style: 'cancel'
+                            }]
+                        )
+                    } else {
+                        const newStudentReg = {
+                            studentId,
+                            firstName,
+                            lastName,
+                            email,
+                            phone,
+                            deviceId
+                        }
+                        navigation.navigate('Login');
+                        dispatch(registerUser(newStudentReg));
                     }
-                    dispatch(registerUser(newStudentReg));
                 }
             }
         }
