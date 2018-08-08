@@ -30,10 +30,9 @@ export default class App extends React.Component {
       );
     } else {
       const AppRoot = createStackNavigator({
+        Checkin: { screen: CheckInScreen },
         Register: { screen: RegisterScreen },
-
-        Login: { screen: LoginScreen },
-        Checkin: { screen: CheckInScreen }
+        Login: { screen: LoginScreen }
       })
       return (
         <Provider store={store}>
@@ -46,8 +45,10 @@ export default class App extends React.Component {
   _loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
-        require('./assets/images/robot-dev.png'),
-        require('./assets/images/robot-prod.png'),
+        require('./assets/images/OCAvertical.png'),
+        require('./assets/images/OCAvertical-white.png'),
+        require('./assets/images/fingerprint-outline-variant.png')
+
       ]),
       Font.loadAsync({
         // This is the font that we are using for our tab bar
