@@ -5,6 +5,14 @@ import Login from './Login';
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
         title: 'Login',
+        headerStyle: {
+            backgroundColor: 'rgb(42,51,61)',
+        },
+        headerTintColor: '#64ABDD',
+        headerTitleStyle: {
+            fontFamily: 'Mwnlo',
+            fontWeight: 'bold',
+        },
     };
 
     render() {
