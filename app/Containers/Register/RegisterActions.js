@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Alert } from 'react-native';
 
 export function firstNameEntry(fname) {
     return {
@@ -42,7 +43,7 @@ export function passwordEntry(password) {
     }
 }
 
-export function password2Entry(password2) {//will need not need
+export function password2Entry(password2) {
     return {
         type: 'PASSWORD2_ENTRY',
         payload: password2
@@ -56,15 +57,41 @@ export function deviceIDEntry(deviceId) {
     }
 }
 
-export function registerUser(newUserReg) {
-    newUserReg.deviceId = 'Abc123'
-    console.log(newUserReg);
-
-
+export function registerUser(newUserReg, navigate) {
+    var answer;
+    newUserReg.deviceId = 'Abc123';                      //temporary until getDeviceID is up and running
     return {
         type: 'USER_REGISTRATION',
-        payload: axios.post('https://035f53a0.ngrok.io/api/users', newUserReg )
-            .then(response => console.log(response.data))
-            .catch(err => console.log(err))
+        payload: axios.get('https://69313235.ngrok.io/register', {    //check if user is actually a student
+            params: {
+                studentId: newUserReg.studentId,
+                email: newUserReg.email
+            }
+        })
+            .then(res => {
+                answer = res.data.answer
+                if (answer == 'green') {
+                    axios.post('https://69313235.ngrok.io/api/users', newUserReg) // user is a student so post to DB
+                        .then(response => {
+                            return response.data;
+                        }
+                        )
+                        .catch(err => {
+                            console.log(err)
+                        })
+                    navigate('Login')
+                } else {
+                    Alert.alert(                                                   //user is not a student
+                        'Administrative Message',
+                        'We are not accepting students at this time.', [{
+                            text: 'OK',
+                            onPress: null,
+                            style: 'cancel'
+                        }]
+                    )
+                }
+            }
+            )
+            .catch(err => err)
     }
 }

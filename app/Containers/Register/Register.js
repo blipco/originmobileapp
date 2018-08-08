@@ -79,8 +79,8 @@ class Register extends React.Component {
 
     handleRegistration() {
         const { navigation, firstName, lastName, studentId, email, phone, password, password2, deviceId, dispatch } = this.props;
+        const { navigate } = this.props.navigation;
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        console.log(firstName, lastName, studentId, email, phone, password, password2, deviceId);
         if (firstName == '' || lastName == '' || studentId == '' || email == '' || phone == '' || password == '' || password2 == '') {
             Alert.alert(
                 'Field Error',
@@ -127,10 +127,10 @@ class Register extends React.Component {
                             lastName,
                             email,
                             phone,
+                            password,
                             deviceId
                         }
-                        navigation.navigate('Login');
-                        dispatch(registerUser(newStudentReg));
+                        dispatch(registerUser(newStudentReg, navigate));
                     }
                 }
             }
