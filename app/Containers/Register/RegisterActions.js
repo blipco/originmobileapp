@@ -62,36 +62,8 @@ export function registerUser(newUserReg, navigate) {
     newUserReg.deviceId = 'Abc123';                      //temporary until getDeviceID is up and running
     return {
         type: 'USER_REGISTRATION',
-        payload: axios.get('https://69313235.ngrok.io/register', {    //check if user is actually a student
-            params: {
-                studentId: newUserReg.studentId,
-                email: newUserReg.email
-            }
-        })
-            .then(res => {
-                answer = res.data.answer
-                if (answer == 'green') {
-                    axios.post('https://69313235.ngrok.io/api/users', newUserReg) // user is a student so post to DB
-                        .then(response => {
-                            return response.data;
-                        }
-                        )
-                        .catch(err => {
-                            console.log(err)
-                        })
-                    navigate('Login')
-                } else {
-                    Alert.alert(                                                   //user is not a student
-                        'Administrative Message',
-                        'We are not accepting students at this time.', [{
-                            text: 'OK',
-                            onPress: null,
-                            style: 'cancel'
-                        }]
-                    )
-                }
-            }
-            )
-            .catch(err => err)
+        payload: axios.post('https://2277d70c.ngrok.io/api/users', newUserReg )
+            .then(response => console.log(response.data))
+            .catch(err => console.log(err))
     }
 }

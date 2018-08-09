@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import RegisterReducer from './Containers/Register/RegisterReducer';
+import registerReducer from './Containers/Register/RegisterReducer';
+import loginReducer from './Containers/Login/LoginReducer';
 
 const rootReducer = combineReducers({
-    registerData: RegisterReducer
+    registerData: registerReducer,
+    loginData: loginReducer
 });
 
 export default rootReducer;
