@@ -139,6 +139,16 @@ class Register extends React.Component {
             }
         }
     }
+    sayHello(){
+        return Alert.alert(
+            'Hello',
+            '🍌baNaNa', [{
+                text: 'OK',
+                onPress: null,
+                style: 'cancel'
+            }]
+        )
+    }
 
     render() {
         return (
@@ -169,6 +179,10 @@ class Register extends React.Component {
                         icon={{ name: 'sign-in', type: 'font-awesome', color: 'rgb(39,44,53)' }}
                         title='Register' />
                 </View>
+                <Button style={styles.button}
+                    onPress={this.sayHello.bind(this)}
+                    backgroundColor={'transparent'}
+                    borderRadius={4} />
             </ScrollView>
         )
     };
@@ -180,8 +194,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(170,176,190)',
         alignItems: 'center',
         paddingTop: 30,
-        paddingBottom: 50,
-        borderBottomWidth: 1,
+        paddingBottom: 250,
+        marginBottom: 0
+
     },
     button: {
         marginTop: 50,

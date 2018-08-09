@@ -9,7 +9,6 @@
     "eject": "expo eject",
     "test": "node ./node_modules/jest/bin/jest.js --watchAll",
     "postinstall": "rndebugger-open --expo"
-
   },
   "jest": {
     "preset": "jest-expo"
