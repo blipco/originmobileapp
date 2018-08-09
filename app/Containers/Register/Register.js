@@ -79,7 +79,7 @@ class Register extends React.Component {
     }
 
     handleRegistration() {
-        const { navigation, firstName, lastName, studentId, email, phone, password, password2, deviceId, dispatch } = this.props;
+        const { firstName, lastName, studentId, email, phone, password, password2, deviceId, dispatch } = this.props;
         const { navigate } = this.props.navigation;
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (firstName == '' || lastName == '' || studentId == '' || email == '' || phone == '' || password == '' || password2 == '') {
@@ -133,10 +133,10 @@ class Register extends React.Component {
 
                         }
                         dispatch(registerUser(newStudentReg, navigate));
+                        navigate('Login');
                     }
                 }
             }
-            dispatch(registerUser(newStudentReg));
         }
     }
 
@@ -146,19 +146,19 @@ class Register extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.formContainer}>
                         <FormLabel labelStyle={styles.formLabel}>Student ID</FormLabel>
-                        <FormInput containerStyle={styles.inputContainer}  onChangeText={this.handleStudentIDInput} />
+                        <FormInput autoCorrect={false} keyboardType='numeric' containerStyle={styles.inputContainer}  onChangeText={this.handleStudentIDInput} />
                         <FormLabel labelStyle={styles.formLabel}>First Name </FormLabel>
-                        <FormInput containerStyle={styles.inputContainer} onChangeText={this.handleFirstNameInput} />
+                        <FormInput autoCorrect={false} containerStyle={styles.inputContainer} onChangeText={this.handleFirstNameInput} />
                         <FormLabel labelStyle={styles.formLabel}>Last Name</FormLabel>
-                        <FormInput containerStyle={styles.inputContainer} onChangeText={this.handleLastNameInput} />
+                        <FormInput autoCorrect={false} containerStyle={styles.inputContainer} onChangeText={this.handleLastNameInput} />
                         <FormLabel labelStyle={styles.formLabel}>Email</FormLabel>
-                        <FormInput containerStyle={styles.inputContainer} onChangeText={this.handleEmailInput} />
+                        <FormInput autoCorrect={false} keyboardType='email-address' containerStyle={styles.inputContainer} onChangeText={this.handleEmailInput} />
                         <FormLabel labelStyle={styles.formLabel}>Phone Number</FormLabel>
-                        <FormInput containerStyle={styles.inputContainer} onChangeText={this.handlePhoneInput} />
+                        <FormInput autoCorrect={false} keyboardType='numeric' containerStyle={styles.inputContainer} onChangeText={this.handlePhoneInput} />
                         <FormLabel labelStyle={styles.formLabel}>Password</FormLabel>
-                        <FormInput containerStyle={styles.inputContainer} onChangeText={this.handlePasswordInput} />
+                        <FormInput autoCorrect={false} textContentType='password' secureTextEntry={true} containerStyle={styles.inputContainer} onChangeText={this.handlePasswordInput} />
                         <FormLabel labelStyle={styles.formLabel}>Confirm Password</FormLabel>
-                        <FormInput containerStyle={styles.inputContainer} onChangeText={this.handlePassword2Input} />
+                        <FormInput autoCorrect={false} textContentType='password' secureTextEntry={true} containerStyle={styles.inputContainer} onChangeText={this.handlePassword2Input} />
                     </View>
                     <Button style={styles.button}
                         onPress={this.handleRegistration}
