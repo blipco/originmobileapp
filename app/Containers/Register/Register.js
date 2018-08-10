@@ -191,7 +191,7 @@ class Register extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'rgb(170,176,190)',
+        backgroundColor: '#ebecf0',
         alignItems: 'center',
         paddingTop: 30,
         paddingBottom: 250,
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgb(36,47,73)',
     },
     formLabel: {
-        backgroundColor: 'rgb(170,176,190)',
+        backgroundColor: '#ebecf0',
         color: '#20252C'
     }
 });

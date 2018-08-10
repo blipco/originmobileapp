@@ -7,12 +7,12 @@ export function loginEntry(loginObj, navigate) {
 
     return {
       type: 'LOGIN_ENTRY',
-      payload: axios.post('https://6e4cf843.ngrok.io/api/users/login', { email, password })
+      payload: axios.post('https://20f6ee5a.ngrok.io/api/users/login', { email, password })
               .then ( response => {
               const accessToken = response.data.id;
               const studentId = response.data.userId;
                 
-            return axios.patch(`https://6e4cf843.ngrok.io/api/users/${studentId}?access_token=${accessToken}`, { deviceId })
+            return axios.patch(`https://20f6ee5a.ngrok.io/api/users/${studentId}?access_token=${accessToken}`, { deviceId })
               .then(response => {
                 if (response.status === 200) navigate('Checkin');
                 return response.data;
