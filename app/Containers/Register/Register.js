@@ -28,6 +28,7 @@ import {
 } from 'react-native-elements';
 import { connect } from 'react-redux';
 
+
 class Register extends React.Component {
     constructor(props) {
         super(props);

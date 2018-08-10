@@ -1,6 +1,5 @@
 {
   "name": "user",
-  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -28,9 +27,6 @@
     },
     "deviceId": {
       "type": "string"
-    },
-    "devices": {
-      "type": ["string"]
     },
     "password": {
       "type": "string",
