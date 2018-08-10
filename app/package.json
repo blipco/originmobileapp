@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll",
+    "postinstall": "rndebugger-open --expo"
   },
   "jest": {
     "preset": "jest-expo"
@@ -30,6 +31,7 @@
     "redux-promise-middleware": "^5.1.1"
   },
   "devDependencies": {
-    "jest-expo": "29.0.0"
+    "jest-expo": "29.0.0",
+    "react-native-debugger-open": "^0.3.17"
   }
 }

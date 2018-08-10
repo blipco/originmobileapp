@@ -5,6 +5,14 @@ import Login from './Login';
 export default class LoginScreen extends React.Component {
     static navigationOptions = {
         title: 'Login',
+        headerStyle: {
+            backgroundColor: 'rgb(42,51,61)',
+        },
+        headerTintColor: '#64ABDD',
+        headerTitleStyle: {
+            fontFamily: 'Mwnlo',
+            fontWeight: 'bold',
+        },
     };
 
     render() {
@@ -20,7 +28,7 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 15,
-        backgroundColor: '#fff',
+        paddingTop: 0,
+        backgroundColor: '#ebecf0'
     },
 });

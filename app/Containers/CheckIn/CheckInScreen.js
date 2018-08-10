@@ -8,24 +8,8 @@ export default class CheckInScreen extends React.Component {
     };
 
     render() {
-        const { navigate } = this.props.navigation;
         return (
-            <ScrollView style={styles.container}>
               <CheckIn navigation={this.props.navigation} />
-            </ScrollView>
         );
     }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 15,
-        backgroundColor: '#fff',
-    },
-});
-function mapStoreToProps(store) {
-    return {
-        
-    };
 }

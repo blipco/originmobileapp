@@ -32,7 +32,6 @@ export default class App extends React.Component {
       const AppRoot = createStackNavigator({
         Login: { screen: LoginScreen },
         Register: { screen: RegisterScreen },
-
         Checkin: { screen: CheckInScreen }
       })
       return (
@@ -46,8 +45,10 @@ export default class App extends React.Component {
   _loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
-        require('./assets/images/robot-dev.png'),
-        require('./assets/images/robot-prod.png'),
+        require('./assets/images/OCAvertical.png'),
+        require('./assets/images/OCAvertical-white.png'),
+        require('./assets/images/fingerprint-outline-variant.png')
+
       ]),
       Font.loadAsync({
         // This is the font that we are using for our tab bar
@@ -55,6 +56,7 @@ export default class App extends React.Component {
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+        'Mwnlo': require('./assets/fonts/Menlo-Regular.ttf')
       }),
     ]);
   };

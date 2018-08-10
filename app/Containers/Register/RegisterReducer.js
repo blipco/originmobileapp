@@ -62,10 +62,10 @@ export default function registerReducer(state = defaultState, action) {
                 deviceId: payload
             }
         }
-        case 'USER_REGISTRATION': {
-            return {
+        case 'USER_REGISTRATION_FULFILLED': {
+             return {
                 ...state,
-                user: payload
+                databaseId: payload
             }
         }
         default: {
