@@ -177,7 +177,8 @@ class Register extends React.Component {
                         color={'rgb(39,44,53)'}
                         medium
                         icon={{ name: 'sign-in', type: 'font-awesome', color: 'rgb(39,44,53)' }}
-                        title='Register' />
+                        title='Register' 
+                        fontFamily= 'Mwnlo' />
                 </View>
                 <Button style={styles.button}
                     onPress={this.sayHello.bind(this)}

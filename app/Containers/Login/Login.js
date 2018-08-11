@@ -88,15 +88,17 @@ class Login extends React.Component {
               backgroundColor={'rgb(100,171,221)'}
               color={'rgb(39,44,53)'}
               borderRadius={3}
-              title='Log in' />
+              title='Log in'
+              fontFamily= 'Mwnlo' />
             </View>
             <View style={{ flex: 1 }} >
             <Button style={styles.button} 
               onPress={this.handleNewUserRegistration} 
               borderRadius={3} 
-              title="Register here" 
+              title="Register" 
               backgroundColor={'rgb(100,171,221)'}
-              color={'rgb(39,44,53)'} />
+              color={'rgb(39,44,53)'}
+              fontFamily= 'Mwnlo' />
             </View>
           </View>
       </View>
@@ -114,7 +116,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 50,
-    marginBottom: 20
+    marginBottom: 20,
   },
   formContainer: {
     width: 350,
