@@ -6,14 +6,13 @@ const defaultState = {
     phone: '',
     password: '',
     password2: '',
-    deviceId: ''
+    deviceId: '',
+    isoDate:'',
+    status: 'checked out'
 }
-
 export default function registerReducer(state = defaultState, action) {
     const { type, payload } = action;
-
     switch (type) {
-
         case 'FIRST_NAME_ENTRY': {
             return {
                 ...state,
@@ -62,10 +61,23 @@ export default function registerReducer(state = defaultState, action) {
                 deviceId: payload
             }
         }
+        case 'USER_REGISTRATION_PENDING': {
+            return {
+                ...state,
+                registrationFulfilled: false
+            }
+        }
         case 'USER_REGISTRATION_FULFILLED': {
              return {
                 ...state,
+                registrationFulfilled: true,
                 databaseId: payload
+            }
+        }
+        case 'USER_REGISTRATION_REJECTED': {
+            return {
+                ...state,
+                error: payload
             }
         }
         default: {
