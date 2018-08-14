@@ -30,9 +30,10 @@ export default class App extends React.Component {
       );
     } else {
       const AppRoot = createStackNavigator({
+        Checkin: { screen: CheckInScreen },
+
         Login: { screen: LoginScreen },
         Register: { screen: RegisterScreen },
-        Checkin: { screen: CheckInScreen }
       })
       return (
         <Provider store={store}>

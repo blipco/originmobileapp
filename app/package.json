@@ -25,6 +25,7 @@
     "react-native-expo-geofence": "^0.1.6",
     "react-native-hyperlink": "0.0.14",
     "react-native-keyboard-aware-scroll-view": "^0.6.0",
+    "react-native-progress-circle": "^2.0.0",
     "react-native-splash-screen": "^3.1.1",
     "react-navigation": "^2.11.2",
     "react-redux": "^5.0.7",

@@ -6,4 +6,19 @@ export function checkIn(checkinInstance, displayDate) {
         payload: checkinInstance,
         displayDate: displayDate
     }
-};
+}
+
+export function release(percent, activeCircle) {
+    return {
+        type: 'RELEASE',
+        payload: {activeCircle, percent}
+
+    }
+}
+
+export function pressIn(percent) {
+    return {
+        type: 'PRESS_IN',
+        payload: percent
+    }
+}

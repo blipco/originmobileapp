@@ -1,12 +1,30 @@
 const defaultState = {
     displayDate: '',
-    status: 'checked out'
-};
+    status: 'checked out',
+    percent: 0,
+    activeCircle: true,
+    isCheckedIn: false
+}
 
 export default function checkinReducer(state = defaultState, action) {
     const { type, payload, displayDate } = action;
 
     switch (type) {
+
+        case 'PRESS_IN': {
+            return {
+                ...state,
+                percent: payload
+            }
+        }
+
+        case 'RELEASE': {
+            return {
+                ...state,
+                activeCircle: payload.activeCircle,
+                percent: payload.percent
+            }
+        }
 
         case 'CHECK_IN_PENDING': {
             return {
@@ -18,7 +36,8 @@ export default function checkinReducer(state = defaultState, action) {
             return {
                 ...state,
                 status: 'checked in',
-                displayDate: displayDate
+                displayDate: displayDate,
+                isCheckedIn: true
             }
         }
 
