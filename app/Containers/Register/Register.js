@@ -41,42 +41,42 @@ class Register extends React.Component {
         this.handlePasswordInput = this.handlePasswordInput.bind(this);
         this.handlePassword2Input = this.handlePassword2Input.bind(this);
         this.handleRegistration = this.handleRegistration.bind(this);
-    }
+    };
 
     handleStudentIDInput(sID) {
         const { dispatch } = this.props;
         dispatch(studentIdEntry(sID));
-    }
+    };
 
     handleFirstNameInput(fname) {
         const { dispatch } = this.props;
         dispatch(firstNameEntry(fname));
-    }
+    };
 
     handleLastNameInput(lname) {
         const { dispatch } = this.props;
         dispatch(lastNameEntry(lname));
-    }
+    };
 
     handleEmailInput(email) {
         const { dispatch } = this.props;
         dispatch(emailEntry(email));
-    }
+    };
 
     handlePhoneInput(phone) {
         const { dispatch } = this.props;
         dispatch(phoneEntry(phone));
-    }
+    };
 
     handlePasswordInput(password) {
         const { dispatch } = this.props;
         dispatch(passwordEntry(password));
-    }
+    };
 
     handlePassword2Input(password2) {
         const { dispatch } = this.props;
         dispatch(password2Entry(password2));
-    }
+    };
 
     handleRegistration() {
         const { firstName, lastName, studentId, email, phone, password, password2, deviceId, dispatch } = this.props;
@@ -138,7 +138,7 @@ class Register extends React.Component {
                 }
             }
         }
-    }
+    };
     sayHello(){
         return Alert.alert(
             'Hello',
@@ -148,7 +148,7 @@ class Register extends React.Component {
                 style: 'cancel'
             }]
         )
-    }
+    };
 
     render() {
         return (
@@ -187,7 +187,7 @@ class Register extends React.Component {
             </ScrollView>
         )
     };
-}
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -218,6 +218,7 @@ const styles = StyleSheet.create({
         color: '#20252C'
     }
 });
+
 function mapStoreToProps(store) {
     return {
         firstName: store.registerData.firstName,
@@ -229,6 +230,6 @@ function mapStoreToProps(store) {
         password2: store.registerData.password2,
         deviceId: store.registerData.deviceId
     };
-}
+};
 
 export default connect(mapStoreToProps)(Register);

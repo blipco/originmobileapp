@@ -23,7 +23,7 @@ class CheckIn extends React.Component {
       styling: styles.imageContainer
     };
     this.handleCheckinButton = this.handleCheckinButton.bind(this);
-  }
+  };
 
   handleCheckinButton() {
 
@@ -49,7 +49,7 @@ class CheckIn extends React.Component {
       "building": "DV-SD-CA"
     }
     dispatch(checkIn(checkinInstance, displayDate));
-  }
+  };
 
   render() {
     const { firstName, lastName, status, displayDate, dispatch } = this.props;
@@ -70,7 +70,7 @@ class CheckIn extends React.Component {
       </ScrollView>
     )
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   textStyle1: {
 
   }
-})
+});
 
 function mapStoreToProps(store) {
   return {
@@ -126,6 +126,6 @@ function mapStoreToProps(store) {
     status: store.checkinData.status,
     displayDate: store.checkinData.displayDate
   };
-}
+};
 
 export default connect(mapStoreToProps)(CheckIn);

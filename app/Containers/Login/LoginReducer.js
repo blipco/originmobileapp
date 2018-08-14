@@ -13,7 +13,7 @@ const defaultState = {
     phone: '',
     studentId: '',
   }
-}
+};
 
 export default function loginReducer(state = defaultState, action) {
   const { type, payload } = action;
@@ -47,4 +47,4 @@ export default function loginReducer(state = defaultState, action) {
     }
 
   }
-}
+};

@@ -23,7 +23,7 @@ export default class RegisterScreen extends React.Component {
             </ScrollView>
         );
     }
-}
+};
 
 const styles = StyleSheet.create({
     container: {

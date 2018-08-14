@@ -6,4 +6,4 @@ export function checkIn(checkinInstance, displayDate) {
         payload: checkinInstance,
         displayDate: displayDate
     }
-}
+};

@@ -9,7 +9,8 @@ const defaultState = {
     deviceId: '',
     isoDate:'',
     status: 'checked out'
-}
+};
+
 export default function registerReducer(state = defaultState, action) {
     const { type, payload } = action;
     switch (type) {
@@ -84,4 +85,4 @@ export default function registerReducer(state = defaultState, action) {
             return state;
         }
     }
-}
+};

@@ -1,7 +1,7 @@
 const defaultState = {
     displayDate: '',
     status: 'checked out'
-}
+};
 
 export default function checkinReducer(state = defaultState, action) {
     const { type, payload, displayDate } = action;
@@ -33,4 +33,4 @@ export default function checkinReducer(state = defaultState, action) {
             return state;
         }
     }
-}
+};

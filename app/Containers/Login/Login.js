@@ -20,7 +20,7 @@ class Login extends React.Component {
     this.handleLoginPasswordInput = this.handleLoginPasswordInput.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleNewUserRegistration = this.handleNewUserRegistration.bind(this);
-  }
+  };
 
   static navigationOptions = {
     title: 'Log in',
@@ -29,12 +29,12 @@ class Login extends React.Component {
   handleLoginEmailInput(input) {
     const { dispatch } = this.props;
     dispatch(emailLoginEntry(input.toLowerCase()));
-  }
+  };
 
   handleLoginPasswordInput(input) {
     const { dispatch } = this.props;
     dispatch(passwordLoginEntry(input));
-  }
+  };
 
   handleLoginSubmit() {
     const { loginEmail, loginPassword } = this.props;
@@ -48,9 +48,7 @@ class Login extends React.Component {
           style: 'cancel'
         }]
       );
-    }
-
-    else {
+    } else {
       const { dispatch } = this.props;
       const { loginEmail, loginPassword, deviceId } = this.props;
       const { navigate } = this.props.navigation;
@@ -63,12 +61,12 @@ class Login extends React.Component {
       }
       dispatch(loginEntry(loginObj, navigate));
     }
-  }
+  };
 
-  handleNewUserRegistration(){
+  handleNewUserRegistration() {
     const { navigate } = this.props.navigation;
     navigate('Register');
-  }
+  };
 
   render() {
     const { studentId, loginEmail, loginPassword } = this.props;
@@ -81,30 +79,30 @@ class Login extends React.Component {
           <FormLabel labelStyle={styles.formLabel}>Password</FormLabel>
           <FormInput containerStyle={styles.inputContainer} defaultValue={loginPassword} onChangeText={this.handleLoginPasswordInput} secureTextEntry={true} />
         </View>
-        <View style={{ flexDirection: 'row', marginTop:45 }}>
-            <View style={{ flex: 1, marginRight: 10 }} >
+        <View style={{ flexDirection: 'row', marginTop: 45 }}>
+          <View style={{ flex: 1, marginRight: 10 }} >
             <Button style={styles.button}
               onPress={this.handleLoginSubmit}
               backgroundColor={'rgb(100,171,221)'}
               color={'rgb(39,44,53)'}
               borderRadius={3}
               title='Log in'
-              fontFamily= 'Mwnlo' />
-            </View>
-            <View style={{ flex: 1 }} >
-            <Button style={styles.button} 
-              onPress={this.handleNewUserRegistration} 
-              borderRadius={3} 
-              title="Register" 
+              fontFamily='Mwnlo' />
+          </View>
+          <View style={{ flex: 1 }} >
+            <Button style={styles.button}
+              onPress={this.handleNewUserRegistration}
+              borderRadius={3}
+              title="Register"
               backgroundColor={'rgb(100,171,221)'}
               color={'rgb(39,44,53)'}
-              fontFamily= 'Mwnlo' />
-            </View>
+              fontFamily='Mwnlo' />
           </View>
+        </View>
       </View>
     )
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -140,6 +138,6 @@ function mapStoreToProps(store) {
     studentId: store.loginData.studentId,
     deviceId: store.loginData.deviceId
   }
-}
+};
 
-export default connect(mapStoreToProps)(Login)
+export default connect(mapStoreToProps)(Login);

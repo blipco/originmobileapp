@@ -7,12 +7,12 @@ export function loginEntry(loginObj, navigate) {
 
     return {
       type: 'LOGIN_ENTRY',
-      payload: axios.post('https://0034ef26.ngrok.io/api/users/login', { email, password })
+      payload: axios.post('https://d20046df.ngrok.io/api/users/login', { email, password })
               .then ( response => {
               const accessToken = response.data.id;
               const studentId = response.data.userId;
                 
-            return axios.patch(`https://0034ef26.ngrok.io/api/users/${studentId}?access_token=${accessToken}`, { deviceId })
+            return axios.patch(`https://d20046df.ngrok.io/api/users/${studentId}?access_token=${accessToken}`, { deviceId })
               .then(response => {
                 if (response.status === 200) navigate('Checkin');
                 return response.data;
@@ -22,18 +22,18 @@ export function loginEntry(loginObj, navigate) {
           .catch(err => console.error(err))
           
     }
-  }
+  };
   
   export function passwordLoginEntry(input) {
     return {
       type: 'PASSWORD_LOGIN_ENTRY',
       payload: input
     }
-  }
+  };
   
   export function emailLoginEntry(input) {
     return {
       type: 'EMAIL_LOGIN_ENTRY',
       payload: input
     }
-  }
+  };

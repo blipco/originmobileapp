@@ -18,12 +18,12 @@ export default class LoginScreen extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.container} >
                 <Login navigation={this.props.navigation} />
             </ScrollView>
         );
     }
-}
+};
 
 const styles = StyleSheet.create({
     container: {
