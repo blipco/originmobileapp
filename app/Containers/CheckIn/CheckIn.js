@@ -1,20 +1,22 @@
 import React from 'react';
-import { checkIn } from './CheckInActions';
+import { checkIn, checkOut } from './CheckInActions';
 import { release } from './CheckInActions';
 import { pressIn } from './CheckInActions';
 import moment from 'moment';
 import ProgressCircle from 'react-native-progress-circle';
 import fingerprint from '../../assets/images/fingerprint-outline-variant.png';
-import {StyleSheet,
-        Button,
-        TouchableHighlight,
-        Image,
-        Text,
-        View,
-        TextInput,
-        Linking,
-        Alert,
-        ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Button,
+  TouchableHighlight,
+  Image,
+  Text,
+  View,
+  TextInput,
+  Linking,
+  Alert,
+  ScrollView
+} from 'react-native';
 import { connect } from 'react-redux';
 
 class CheckIn extends React.Component {
@@ -41,51 +43,56 @@ class CheckIn extends React.Component {
   }
 
   handleLongPress() {
-    const { studentId, dispatch } = this.props;
+    const { studentId, status, dispatch } = this.props;
     const weekday = moment().format('ddd');
     const isoDate = new Date().toISOString();
-    const displayDate = moment().format('LT');
-    checkinInstance = {
+    const displayTime = moment().format('LT');
+    checkin_outInstance = {
       "id": studentId,
       "isoDate": isoDate,
       "dow": weekday,
       "room": "900",
       "building": "DV-SD-CA"
     }
-    dispatch(checkIn(checkinInstance, displayDate));
+    if (status == 'checked out') {
+      dispatch(checkIn(checkin_outInstance, displayTime));
+    } else if (status == 'checked in') {
+      dispatch(checkOut(checkin_outInstance, displayTime));
+    }
   };
 
   render() {
-    const { firstName, 
-            lastName, 
-            status, 
-            displayDate, 
-            percent } = this.props;
+    const { firstName,
+      lastName,
+      status,
+      displayTime,
+      percent } = this.props;
+
     return (
       <ScrollView keyboardDismissMode='on-drag'>
         <View style={styles.container}>
           <Text style={styles.textStyle}>CHECK IN</Text>
           <ProgressCircle style={styles.circle}
-                          percent={percent}
-                          radius={120}
-                          borderWidth={8}
-                          color= '#FAFAFA'
-                          >
-            <TouchableHighlight onLongPress={this.handleLongPress} 
-                                onPressIn={this.handlePressIn} 
-                                onPressOut={this.handleRelease}
-                                underlayColor='#EBECF0' 
-                                style={this.props.isCheckedIn === false ? styles.imageContainerPink : styles.imageContainerGreen}>
+            percent={percent}
+            radius={120}
+            borderWidth={8}
+            color='#FAFAFA'
+          >
+            <TouchableHighlight onLongPress={this.handleLongPress}
+              onPressIn={this.handlePressIn}
+              onPressOut={this.handleRelease}
+              underlayColor='#EBECF0'
+              style={this.props.isCheckedIn === false ? styles.imageContainerPink : styles.imageContainerGreen}>
               <Image style={styles.image} source={fingerprint} />
             </TouchableHighlight>
           </ProgressCircle>
-          {displayDate != '' 
-          ?
+          {displayTime != ''
+            ?
             <Text style={styles.textStyle1}>
-              {firstName} {lastName} {status} at {displayDate}.
+              {firstName} {lastName} {status} at {displayTime}.
             </Text>
-          :
-          <Text></Text>
+            :
+            <Text></Text>
           }
         </View>
       </ScrollView>
@@ -143,10 +150,10 @@ function mapStoreToProps(store) {
     lastName: store.loginData.user.lastName,
     studentId: store.loginData.user.studentId,
     status: store.checkinData.status,
-    displayDate: store.checkinData.displayDate,
+    displayTime: store.checkinData.displayTime,
     activeCircle: store.checkinData.activeCircle,
     percent: store.checkinData.percent,
-    isCheckedIn: store.checkinData.isCheckedIn 
+    isCheckedIn: store.checkinData.isCheckedIn
   };
 };
 

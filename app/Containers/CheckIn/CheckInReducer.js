@@ -1,5 +1,5 @@
 const defaultState = {
-    displayDate: '',
+    displayTime: '',
     status: 'checked out',
     percent: 0,
     activeCircle: true,
@@ -7,8 +7,7 @@ const defaultState = {
 }
 
 export default function checkinReducer(state = defaultState, action) {
-    const { type, payload, displayDate } = action;
-
+    const { type, payload } = action;
     switch (type) {
 
         case 'PRESS_IN': {
@@ -32,11 +31,11 @@ export default function checkinReducer(state = defaultState, action) {
             }
         }
 
-        case 'CHECK_IN': {                          //change to fulfilled once axios call is initiated
+        case 'CHECK_IN_FULFILLED': {                          //change to fulfilled once axios call is initiated
             return {
                 ...state,
                 status: 'checked in',
-                displayDate: displayDate,
+                displayTime: payload,
                 isCheckedIn: true
             }
         }
@@ -44,7 +43,29 @@ export default function checkinReducer(state = defaultState, action) {
         case 'CHECK_IN_REJECTED': {
             return {
                 ...state,
-                errror: payload
+                error: payload
+            }
+        }
+
+        case 'CHECK_OUT_PENDING': {
+            return {
+                ...state
+            }
+        }
+
+        case 'CHECK_OUT_FULFILLED': {                          //change to fulfilled once axios call is initiated
+            return {
+                ...state,
+                status: 'checked out',
+                displayTime: payload,
+                isCheckedIn: false
+            }
+        }
+
+        case 'CHECK_OUT_REJECTED': {
+            return {
+                ...state,
+                error: payload
             }
         }
 

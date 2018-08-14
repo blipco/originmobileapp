@@ -11,7 +11,7 @@ const defaultState = {
     id: '',
     lastName: '',
     phone: '',
-    studentId: '',
+    studentId: ''
   }
 };
 

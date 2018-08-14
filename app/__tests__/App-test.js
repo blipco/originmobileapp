@@ -19,4 +19,5 @@ describe('App snapshot', () => {
     const tree = renderer.create(<App skipLoadingScreen />).toJSON();
     expect(tree).toMatchSnapshot();
   });
+  
 });

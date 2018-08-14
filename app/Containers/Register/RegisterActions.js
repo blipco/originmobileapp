@@ -60,24 +60,25 @@ export function deviceIDEntry(deviceId) {
 export function registerUser(newUserReg, navigate) {
     var answer;
     newUserReg.deviceId = 'Abc123';                      //temporary until getDeviceID is up and running
+
     return {
         type: 'USER_REGISTRATION',
-        payload: axios.get('https://d20046df.ngrok.io/register', {    //check if user is actually a student
+        payload: axios.get('https://1ed7d901.ngrok.io/register', {    //check if user is actually a student
             params: {
                 studentId: newUserReg.studentId,
                 email: newUserReg.email
             }
         })
-            .then(res => {
-                answer = res.data.answer
-                if (answer == 'green') {
-                    axios.post('https://d20046df.ngrok.io/api/users', newUserReg) // user is a student so post to DB
+            .then(result => {
+                let answer = result.data.status;
+                if (answer == true) {
+                    axios.post('https://1ed7d901.ngrok.io/api/users', newUserReg) // user is a student so post to DB
                         .then(response => {
                             return response.data;
                         }
                         )
                         .catch(err => {
-                            console.log(err)
+                            console.log(err.message);
                         })
                     navigate('Login')
                 } else {
@@ -92,6 +93,8 @@ export function registerUser(newUserReg, navigate) {
                 }
             }
             )
-            .catch(err => err)
+            .catch(err => {
+                result.send(err.message);
+            })
     }
 }
