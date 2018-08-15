@@ -63,16 +63,16 @@ export function registerUser(newUserReg, navigate) {
 
     return {
         type: 'USER_REGISTRATION',
-        payload: axios.get('https://1ed7d901.ngrok.io/register', {    //check if user is actually a student
+        payload: axios.get('http://20f6ee5a.ngrok.io/register', {    //check if user is actually a student
             params: {
                 studentId: newUserReg.studentId,
                 email: newUserReg.email
             }
         })
-            .then(result => {
-                let answer = result.data.status;
-                if (answer == true) {
-                    axios.post('https://1ed7d901.ngrok.io/api/users', newUserReg) // user is a student so post to DB
+            .then(res => {
+                answer = res.data.answer
+                if (answer == 'green') {
+                    axios.post('http://20f6ee5a.ngrok.io/api/users', newUserReg) // user is a student so post to DB
                         .then(response => {
                             return response.data;
                         }

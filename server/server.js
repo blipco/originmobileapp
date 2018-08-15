@@ -15,10 +15,8 @@ app.start = function () {
   return app.listen(function () {
     app.emit('started');
     var baseUrl = app.get('url').replace(/\/$/, '');
-    console.log('Web server listening at: %s', baseUrl);
     if (app.get('loopback-component-explorer')) {
       var explorerPath = app.get('loopback-component-explorer').mountPath;
-      console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
     }
   });
 };
@@ -28,7 +26,7 @@ app.get('/register', (req, res) => {
     studentId: req.query.studentId,
     email: req.query.email
   }
-  axios.get('https://1ed7d901.ngrok.io/studentConfirmationTest', newUser)
+  axios.get('http://20f6ee5a.ngrok.io/studentConfirmationTest', newUser)
     .then(response => {
       res.send(response.data);
     })
@@ -52,7 +50,7 @@ app.get('/studentConfirmationTest', (req, res) => {
 app.get('/checkin', (req, res) => {
   let checkInInstance = req.query;
 
-  axios.get('https://1ed7d901.ngrok.io/checkInTest', checkInInstance)
+  axios.get('http://20f6ee5a.ngrok.io/checkInTest', checkInInstance)
     .then(response => {
       res.send(response.data);
     })

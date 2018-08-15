@@ -55,9 +55,9 @@ class Login extends React.Component {
       const signInId = Expo.Constants.deviceId;
 
       const loginObj = {
-        "email": loginEmail,
-        "password": loginPassword,
-        "deviceId": signInId
+        email: loginEmail,
+        password: loginPassword,
+        deviceId: signInId
       }
       dispatch(loginEntry(loginObj, navigate));
     }

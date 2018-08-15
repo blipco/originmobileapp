@@ -3,7 +3,9 @@ const defaultState = {
     status: 'checked out',
     percent: 0,
     activeCircle: true,
-    isCheckedIn: false
+    isCheckedIn: false,
+    buttonEnabled: false,
+    location: null
 }
 
 export default function checkinReducer(state = defaultState, action) {
@@ -66,6 +68,20 @@ export default function checkinReducer(state = defaultState, action) {
             return {
                 ...state,
                 error: payload
+            }
+        }
+
+        case 'ENABLE_BUTTON': {
+            return {
+                ...state,
+                buttonEnabled: payload
+            }
+        }
+
+        case 'UPDATE_LOCATION': {
+            return {
+                ...state,
+                location: payload
             }
         }
 
