@@ -139,7 +139,7 @@ class Register extends React.Component {
             }
         }
     };
-    sayHello(){
+    sayHello() {
         return Alert.alert(
             'Hello',
             '🍌baNaNa', [{
@@ -156,13 +156,13 @@ class Register extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.formContainer}>
                         <FormLabel labelStyle={styles.formLabel}>Student ID</FormLabel>
-                        <FormInput autoCorrect={false} keyboardType='numeric' containerStyle={styles.inputContainer}  onChangeText={this.handleStudentIDInput} />
+                        <FormInput autoCorrect={false} keyboardType='numeric' containerStyle={styles.inputContainer} onChangeText={this.handleStudentIDInput} />
                         <FormLabel labelStyle={styles.formLabel}>First Name </FormLabel>
                         <FormInput autoCorrect={false} containerStyle={styles.inputContainer} onChangeText={this.handleFirstNameInput} />
                         <FormLabel labelStyle={styles.formLabel}>Last Name</FormLabel>
                         <FormInput autoCorrect={false} containerStyle={styles.inputContainer} onChangeText={this.handleLastNameInput} />
                         <FormLabel labelStyle={styles.formLabel}>Email</FormLabel>
-                        <FormInput autoCorrect={false} keyboardType='email-address' containerStyle={styles.inputContainer} onChangeText={this.handleEmailInput} />
+                        <FormInput autoCorrect={false} keyboardType='email-address' containerStyle={styles.inputContainer} onChangeText={this.handleEmailInput} />                      
                         <FormLabel labelStyle={styles.formLabel}>Phone Number</FormLabel>
                         <FormInput autoCorrect={false} keyboardType='numeric' containerStyle={styles.inputContainer} onChangeText={this.handlePhoneInput} />
                         <FormLabel labelStyle={styles.formLabel}>Password</FormLabel>
@@ -177,8 +177,8 @@ class Register extends React.Component {
                         color={'rgb(39,44,53)'}
                         medium
                         icon={{ name: 'sign-in', type: 'font-awesome', color: 'rgb(39,44,53)' }}
-                        title='Register' 
-                        fontFamily= 'Mwnlo' />
+                        title='Register'
+                        fontFamily='Mwnlo' />
                 </View>
                 <Button style={styles.button}
                     onPress={this.sayHello.bind(this)}

@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {Alert} from 'react-native';
+import { Alert } from 'react-native';
 
 export function checkIn(checkin_outInstance, displayTime) {
     return {
         type: 'CHECK_IN',
-        payload: axios.get('http://20f6ee5a.ngrok.io/checkin', {
+        payload: axios.get('https://18825649.ngrok.io/checkin', {
             params: {
                 checkin_outInstance
             }
@@ -16,12 +16,14 @@ export function checkIn(checkin_outInstance, displayTime) {
                 } else {
                     Alert.alert(
                         'Administrative Message',
-                        'Failed to check in.', [{
+                        'Failed to check in. Please try again.', [{
                             text: 'OK',
                             onPress: null,
                             style: 'cancel'
                         }]
                     )
+                    let displayTime = '';
+                    return displayTime;
                 }
             }
             )
@@ -34,7 +36,7 @@ export function checkIn(checkin_outInstance, displayTime) {
 export function checkOut(checkin_outInstance, displayTime) {
     return {
         type: 'CHECK_OUT',
-        payload: axios.get('http://20f6ee5a.ngrok.io/checkin', {
+        payload: axios.get('https://18825649.ngrok.io/checkin', {
             params: {
                 checkin_outInstance
             }
@@ -46,17 +48,19 @@ export function checkOut(checkin_outInstance, displayTime) {
                 } else {
                     Alert.alert(
                         'Administrative Message',
-                        'Failed to check out.', [{
+                        'Failed to check out. Please try again.', [{
                             text: 'OK',
                             onPress: null,
                             style: 'cancel'
                         }]
                     )
+                    let displayTime = '';
+                    return displayTime;
                 }
             }
             )
             .catch(err => {
-                res.send(err.message);
+                console.log(err.message);
             })
     }
 }

@@ -28,7 +28,7 @@ class Login extends React.Component {
 
   handleLoginEmailInput(input) {
     const { dispatch } = this.props;
-    dispatch(emailLoginEntry(input.toLowerCase()));
+    dispatch(emailLoginEntry(input));
   };
 
   handleLoginPasswordInput(input) {

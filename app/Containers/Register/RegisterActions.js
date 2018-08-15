@@ -25,7 +25,7 @@ export function studentIdEntry(studentId) {
 export function emailEntry(email) {
     return {
         type: 'EMAIL_ENTRY',
-        payload: email
+        payload: email.toLowerCase()
     }
 }
 
@@ -63,16 +63,16 @@ export function registerUser(newUserReg, navigate) {
 
     return {
         type: 'USER_REGISTRATION',
-        payload: axios.get('http://20f6ee5a.ngrok.io/register', {    //check if user is actually a student
+        payload: axios.get('https://18825649.ngrok.io/register', {    //check if user is actually a student
             params: {
                 studentId: newUserReg.studentId,
                 email: newUserReg.email
             }
         })
-            .then(res => {
-                answer = res.data.answer
-                if (answer == 'green') {
-                    axios.post('http://20f6ee5a.ngrok.io/api/users', newUserReg) // user is a student so post to DB
+            .then(result => {
+                answer = result.data.status;
+                if (answer == true) {
+                    axios.post('https://18825649.ngrok.io/api/users', newUserReg) // user is a student so post to DB
                         .then(response => {
                             return response.data;
                         }
