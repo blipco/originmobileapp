@@ -2,19 +2,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Platform,
   StyleSheet,
   Alert,
   View
 } from 'react-native';
-import { FormLabel, FormInput, Button } from 'react-native-elements';
-import { loginEntry, passwordLoginEntry, emailLoginEntry } from './LoginActions';
+import {
+  FormLabel,
+  FormInput,
+  Button
+} from 'react-native-elements';
 import Expo from 'expo';
+import {
+  loginEntry,
+  passwordLoginEntry,
+  emailLoginEntry
+} from './LoginActions';
+import { loginStyle } from './LoginStyles';
 
 class Login extends React.Component {
-  static navigationOptions = {
-    title: 'Log in'
-  };
 
   constructor(props) {
     super(props);
@@ -66,6 +71,8 @@ class Login extends React.Component {
 
   render() {
     const { loginEmail, loginPassword } = this.props;
+    const styles = StyleSheet.create(loginStyle);
+
     return (
       <View style={styles.container}>
         <View style={styles.formContainer}>
@@ -111,33 +118,6 @@ class Login extends React.Component {
     );
   }
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ebecf0',
-    alignItems: 'center',
-    paddingTop: 30,
-    paddingBottom: 305
-  },
-  button: {
-    marginTop: 50,
-    marginBottom: 20
-  },
-  formContainer: {
-    width: 350,
-    borderColor: 'transparent',
-    borderBottomWidth: 0
-  },
-  inputContainer: {
-    borderBottomWidth: Platform.OS === 'ios' ? 1 : 0,
-    borderBottomColor: 'rgb(36,47,73)'
-  },
-  formLabel: {
-    backgroundColor: '#ebecf0',
-    color: '#20252C'
-  }
-});
 
 function mapStoreToProps(store) {
   return {

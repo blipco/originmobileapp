@@ -1,34 +1,17 @@
 /* eslint no-unused-vars: 0 */
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native';
 import Login from './Login';
+import { navigateStyle } from './LoginStyles'
 
 export default class LoginScreen extends React.Component {
-    static navigationOptions = {
-        title: 'Login',
-        headerStyle: {
-            backgroundColor: 'rgb(42,51,61)'
-        },
-        headerTintColor: '#64ABDD',
-        headerTitleStyle: {
-            fontFamily: 'Mwnlo',
-            fontWeight: 'bold'
-        }
-    };
+    static navigationOptions = navigateStyle;
 
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView keyboardDismissMode='on-drag'>
                 <Login navigation={this.props.navigation} />
             </ScrollView>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 0,
-        backgroundColor: '#ebecf0'
-    }
-});

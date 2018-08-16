@@ -1,34 +1,17 @@
 /* eslint no-unused-vars: 0 */
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native';
 import Register from './Register';
+import { navigateStyle } from './RegisterStyle';
 
 export default class RegisterScreen extends React.Component {
-    static navigationOptions = {
-        title: 'Register',
-        headerStyle: {
-            backgroundColor: 'rgb(42,51,61)'
-        },
-        headerTintColor: '#64ABDD',
-        headerTitleStyle: {
-            fontFamily: 'Mwnlo',
-            fontWeight: 'bold'
-        }
-    };
+    static navigationOptions = navigateStyle
 
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView keyboardDismissMode='on-drag'>
                 <Register navigation={this.props.navigation} />
             </ScrollView>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 0,
-        backgroundColor: '#ebecf0'
-    }
-});
