@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { loginEntry, passwordLoginEntry, emailLoginEntry } from './LoginActions';
+import Expo from 'expo';
 
 class Login extends React.Component {
   static navigationOptions = {
@@ -39,8 +40,7 @@ class Login extends React.Component {
     const { navigate } = this.props.navigation;
     const signInId = Expo.Constants.deviceId;
     if (loginEmail === ''
-        || loginPassword === ''
-        || !loginEmail) {
+        || loginPassword === '') {
       Alert.alert(
         'Error',
         'Please complete all fields before submitting', [{
