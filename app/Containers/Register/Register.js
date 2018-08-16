@@ -39,9 +39,9 @@ class Register extends React.Component {
         this.sayHello = this.sayHello.bind(this);
     }
 
-    handleStudentIDInput(sID) {
+    handleStudentIDInput(studentId) {
         const { dispatch } = this.props;
-        dispatch(studentIdEntry(sID));
+        dispatch(studentIdEntry(studentId));
     }
 
     handleFirstNameInput(fname) {
