@@ -1,0 +1,8 @@
+server/*
+dist/*
+node_modules/*
+**/node_modules/*
+app/__tests__/*
+app/assets/*
+app/Containers/__tests__/*
+app/node_modules/*

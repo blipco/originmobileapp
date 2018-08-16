@@ -1,0 +1,64 @@
+{
+    "extends": ["eslint:recommended"],    
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import",
+        "babel"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "jsx": true,
+            "classes": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "rules": {
+      "indent": 0,
+      "quotes": ["warn", "single", {
+          "avoidEscape": true
+      }],
+      "jsx-quotes": ["warn", "prefer-single"],
+      "no-param-reassign": 0,
+      "no-use-before-define": 0,
+      "brace-style": 0,
+      "prefer-arrow-callback": 0,
+      "no-tabs": 0,
+      "no-console": 0,
+      "babel/semi": ["warn", "always"],
+      "prefer-spread": ["error"],
+      "no-undef": 0,
+      "comma-dangle": ["warn", "never"],
+      "no-duplicate-case": ["warn"],
+      "no-empty": ["warn"],
+      "no-extra-boolean-cast": ["warn"],
+      "no-extra-parens": ["error"],
+      "no-extra-semi": 0,
+      "no-irregular-whitespace": ["warn", {
+        "skipStrings": true,
+        "skipComments": true,
+        "skipRegExps": true,
+        "skipTemplates": true
+      }],
+      "default-case": ["error"],
+      "no-empty-function": ["warn"],
+      "vars-on-top": ["warn"],
+      "no-shadow": ["error", {
+        "builtinGlobals": true
+      }],
+      "no-unused-vars": ["warn", {
+          "vars": "local", 
+          "args": "all"
+      }],
+      "global-require": ["warn"],
+      "eol-last": ["error", "always"],
+      "no-multiple-empty-lines": ["warn", {
+          "maxBOF": 0,
+          "max": 1, 
+          "maxEOF": 1
+      }]
+    }
+}

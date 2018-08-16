@@ -1,9 +1,8 @@
-'use strict';
-
-var loopback = require('loopback');
-var boot = require('loopback-boot');
-var bodyParser = require('body-parser');
-var app = module.exports = loopback();
+const axios = require('axios');
+const loopback = require('loopback');
+const boot = require('loopback-boot');
+const bodyParser = require('body-parser');
+const app = module.exports = loopback();
 
 
 app.use(bodyParser.json());
@@ -23,13 +22,58 @@ app.start = function () {
 };
 
 app.get('/register', (req, res) => {
-  let newUser = {
-    studentId: req.body.studentId,
-    email: req.body.email
+  const newUser = {
+    studentId: req.query.studentId,
+    email: req.query.email
   }
-  var pass = { answer: 'green' };//expect 'green' (student exists) or 'red' (student does not exist)
-  res.send(pass);
-});
+  axios.get('http://20f6ee5a.ngrok.io/studentConfirmationTest', newUser)
+    .then(response => {
+      res.send(response.data);
+    })
+    .catch(err => {
+      res.send(err.message);
+    })
+})
+
+app.get('/studentConfirmationTest', (req, res) => {
+  //user is a student
+  const confirmed = {
+    status: true
+  }
+  //user is not a student
+  const denied = {
+    status: false
+  }
+  res.send(confirmed);
+})
+
+app.get('/checkin', (req, res) => {
+  const checkInInstance = req.query;
+
+  axios.get('http://20f6ee5a.ngrok.io/checkInTest', checkInInstance)
+    .then(response => {
+      res.send(response.data);
+    })
+    .catch(error => {
+      res.send(error.message);
+    })
+})
+
+app.get('/checkInTest', (req, res) => {
+  //successful check in
+  const success = {
+    status: "success"
+  }
+  //failed to check in
+  const error = {
+    error: {
+      statusCode: 400,
+      name: "Error",
+      message: "failure"
+    }
+  }
+  res.send(success);
+})
 
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
