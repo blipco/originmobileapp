@@ -1,18 +1,13 @@
+/* eslint no-unused-vars: 0 */
 import React from 'react';
-import { checkIn, updateLocation, enableButton, pressIn, release, checkOut } from './CheckInActions';
 import moment from 'moment';
 import ProgressCircle from 'react-native-progress-circle';
-import fingerprint from '../../assets/images/fingerprint-outline-variant.png';
-import refresh from '../../assets/images/refresh.png';
 import {
   StyleSheet,
-  Button,
   TouchableHighlight,
   Image,
   Text,
   View,
-  TextInput,
-  Linking,
   Alert,
   Platform,
   ScrollView
@@ -20,6 +15,16 @@ import {
 import { connect } from 'react-redux';
 import { Constants, Location, Permissions } from 'expo';
 import geolib from 'geolib';
+import fingerprint from '../../assets/images/fingerprint-outline-variant.png';
+import refresh from '../../assets/images/refresh.png';
+import {
+  checkIn,
+  updateLocation,
+  enableButton,
+  pressIn,
+  release,
+  checkOut
+} from './CheckInActions';
 
 class CheckIn extends React.Component {
   constructor(props) {
@@ -40,65 +45,64 @@ class CheckIn extends React.Component {
         'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
         [
           { text: 'Cancel', style: 'cancel' },
-          { text: 'OK' },
+          { text: 'OK' }
         ],
         { cancelable: false }
-      )
+      );
     } else {
       this._getLocationAsync();
     }
   }
 
-  _getLocationAsync = async () => {
+  _getLocationAsync = async() => {
     const { dispatch } = this.props;
-    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
       Alert.alert(
         'Error',
         'Enable location permissions on your device',
         [
           { text: 'Cancel', style: 'cancel' },
-          { text: 'OK' },
+          { text: 'OK' }
         ],
         { cancelable: false }
-      )
-
+      );
     }
 
-    let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
-    const timestamp = moment(location.timestamp).format('h:mm:ssa')
+    const location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
+    const timestamp = moment(location.timestamp).format('h:mm:ssa');
     const longitude = Math.abs(parseFloat(location.coords.longitude.toFixed(6)));
     const latitude = Math.abs(parseFloat(location.coords.latitude.toFixed(6)));
-    const originLocation = { longitude: 117.156072, latitude: 32.708922 }
+    const originLocation = { longitude: 117.156072, latitude: 32.708922 };
 
-    let isOnSite = geolib.isPointInCircle(
+    const isOnSite = geolib.isPointInCircle(
       { longitude, latitude },
       originLocation,
       25
     );
     dispatch(enableButton(isOnSite));
 
-    let currentLocation = {
+    const currentLocation = {
       time: timestamp,
-      longitude: longitude,
-      latitude: latitude
-    }
+      longitude,
+      latitude
+    };
     dispatch(updateLocation(currentLocation));
   };
 
   handlePressIn() {
     const { dispatch } = this.props;
-    let percent = this.props.percent + 5
-    this.interval = setTimeout(this.handlePressIn, 10)
-    dispatch(pressIn(percent))
+    const percent = this.props.percent + 5;
+    this.interval = setTimeout(this.handlePressIn, 10);
+    dispatch(pressIn(percent));
   }
 
   handleRelease() {
     const { dispatch } = this.props;
-    clearTimeout(this.interval)
-    let percent = 0
-    let activeCircle = false
-    dispatch(release(percent, activeCircle))
+    clearTimeout(this.interval);
+    const percent = 0;
+    const activeCircle = false;
+    dispatch(release(percent, activeCircle));
   }
 
   handleLongPress() {
@@ -108,28 +112,33 @@ class CheckIn extends React.Component {
         'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
         [
           { text: 'Cancel', style: 'cancel' },
-          { text: 'OK' },
+          { text: 'OK' }
         ],
         { cancelable: false }
-      )
+      );
     } else {
       this._getLocationAsync();
 
-      const { studentId, status, buttonEnabled, dispatch } = this.props;
+      const {
+        studentId,
+        status,
+        buttonEnabled,
+        dispatch
+      } = this.props;
       const weekday = moment().format('ddd');
       const isoDate = new Date().toISOString();
       const displayTime = moment().format('LT');
       checkin_outInstance = {
-        "id": studentId,
-        "isoDate": isoDate,
-        "dow": weekday,
-        "room": "900",
-        "building": "DV-SD-CA"
-      }
+        id: studentId,
+        isoDate,
+        dow: weekday,
+        room: '900',
+        building: 'DV-SD-CA'
+      };
       if (buttonEnabled) {
-        if (status == 'checked out') {
+        if (status === 'checked out') {
           dispatch(checkIn(checkin_outInstance, displayTime));
-        } else if (status == 'checked in') {
+        } else if (status === 'checked in') {
           dispatch(checkOut(checkin_outInstance, displayTime));
         }
       } else {
@@ -138,10 +147,10 @@ class CheckIn extends React.Component {
           'Please check your location and refresh!',
           [
             { text: 'Cancel', style: 'cancel' },
-            { text: 'OK' },
+            { text: 'OK' }
           ],
           { cancelable: false }
-        )
+        );
       }
     }
   };
@@ -152,54 +161,61 @@ class CheckIn extends React.Component {
       'Refreshed!',
       'Please check in again',
       [
-        {text: 'OK'}
+        { text: 'OK' }
       ]
-    )
+    );
   }
 
   render() {
-    const { firstName,
+    const {
+      firstName,
       lastName,
       status,
       displayTime,
-      percent } = this.props;
+      percent,
+      isCheckedIn
+    } = this.props;
 
     return (
       <ScrollView keyboardDismissMode='on-drag'>
         <View style={styles.container}>
           <Text style={styles.textStyle}>PUNCH CLOCK</Text>
-          <ProgressCircle style={styles.circle}
+          <ProgressCircle
+            style={styles.circle}
             percent={percent}
             radius={120}
             borderWidth={8}
             color='#FAFAFA'
           >
-            <TouchableHighlight onLongPress={this.handleLongPress}
+            <TouchableHighlight
+              onLongPress={this.handleLongPress}
               onPressIn={this.handlePressIn}
               onPressOut={this.handleRelease}
               underlayColor='#EBECF0'
-              style={this.props.isCheckedIn === false ? styles.imageContainerPink : styles.imageContainerGreen}>
-              <Image style={styles.image} source={fingerprint}/>
+              style={
+                isCheckedIn === false
+                ? styles.imageContainerPink
+                : styles.imageContainerGreen}
+            >
+              <Image style={styles.image} source={fingerprint} />
             </TouchableHighlight>
           </ProgressCircle>
-          {displayTime != ''
-            ?
-            <Text style={styles.textStyle1}>
-              {firstName} {lastName}
-              {'\n'}{status} at {displayTime}
-            </Text>
-            :
-            <Text style={styles.textStyle1}>
-            {'\n'}
-            </Text>
+          {displayTime !== ''
+            ? <Text style={styles.textStyle1}>
+                {firstName} {lastName}{'\n'}
+                {status} at {displayTime}
+              </Text>
+            : <Text style={styles.textStyle1}>
+                {'\n'}
+              </Text>
           }
           <TouchableHighlight onPress={this.handleRefresh} underlayColor='#EBECF0'>
-              <Image style={styles.icon} source={refresh} />
-            </TouchableHighlight>
+            <Image style={styles.icon} source={refresh} />
+          </TouchableHighlight>
         </View>
-        
+
       </ScrollView>
-    )
+    );
   }
 };
 
@@ -208,7 +224,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 55,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   imageContainerPink: {
     height: 256,
@@ -235,7 +251,7 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     height: 128,
     width: 128,
-    borderRadius: 64,
+    borderRadius: 64
   },
   icon: {
     marginTop: 55,

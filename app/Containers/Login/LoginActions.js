@@ -1,3 +1,4 @@
+/* eslint no-shadow: 0 */
 import axios from 'axios';
 
 export function loginEntry(loginObj, navigate) {
@@ -20,20 +21,19 @@ export function loginEntry(loginObj, navigate) {
               .catch(err => console.error(err));
             })
           .catch(err => console.error(err))
-          
-    }
-  };
-  
-  export function passwordLoginEntry(input) {
+    };
+};
+
+export function passwordLoginEntry(input) {
     return {
       type: 'PASSWORD_LOGIN_ENTRY',
       payload: input
-    }
-  };
-  
-  export function emailLoginEntry(input) {
+    };
+};
+
+export function emailLoginEntry(input) {
     return {
       type: 'EMAIL_LOGIN_ENTRY',
       payload: input
-    }
-  };
+    };
+};

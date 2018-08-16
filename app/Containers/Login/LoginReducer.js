@@ -23,28 +23,26 @@ export default function loginReducer(state = defaultState, action) {
       return {
         ...state,
         loginEmail: payload
-      }
+      };
     }
 
     case 'PASSWORD_LOGIN_ENTRY': {
       return {
         ...state,
         loginPassword: payload
-      }
+      };
     }
 
     case 'LOGIN_ENTRY_FULFILLED': {
-      let deviceId = [...state.deviceId, payload];
       return {
         ...state,
         user: payload,
         deviceId: payload.deviceId
-      }
+      };
     }
 
     default: {
       return state;
     }
-
   }
-};
+}

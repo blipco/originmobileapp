@@ -1,10 +1,8 @@
-'use strict';
-
-var axios = require('axios');
-var loopback = require('loopback');
-var boot = require('loopback-boot');
-var bodyParser = require('body-parser');
-var app = module.exports = loopback();
+const axios = require('axios');
+const loopback = require('loopback');
+const boot = require('loopback-boot');
+const bodyParser = require('body-parser');
+const app = module.exports = loopback();
 
 
 app.use(bodyParser.json());
@@ -24,7 +22,7 @@ app.start = function () {
 };
 
 app.get('/register', (req, res) => {
-  let newUser = {
+  const newUser = {
     studentId: req.query.studentId,
     email: req.query.email
   }
@@ -39,18 +37,18 @@ app.get('/register', (req, res) => {
 
 app.get('/studentConfirmationTest', (req, res) => {
   //user is a student
-  let confirmed = {
+  const confirmed = {
     status: true
   }
   //user is not a student
-  let denied = {
+  const denied = {
     status: false
   }
   res.send(confirmed);
 })
 
 app.get('/checkin', (req, res) => {
-  let checkInInstance = req.query;
+  const checkInInstance = req.query;
 
   axios.get('https://18825649.ngrok.io/checkInTest', checkInInstance)
     .then(response => {
@@ -63,11 +61,11 @@ app.get('/checkin', (req, res) => {
 
 app.get('/checkInTest', (req, res) => {
   //successful check in
-  let success = {
+  const success = {
     status: "success"
   }
   //failed to check in
-  let error = {
+  const error = {
     error: {
       statusCode: 400,
       name: "Error",

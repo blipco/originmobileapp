@@ -9,28 +9,27 @@ export function checkIn(checkin_outInstance, displayTime) {
                 checkin_outInstance
             }
         })
-            .then(result => {
-                let answer = result.data.status;
-                if (answer == 'success') {
+            .then((result) => {
+                const answer = result.data.status;
+                if (answer === 'success') {
                     return displayTime;
                 } else {
                     Alert.alert(
-                        'Administrative Message',
-                        'Failed to check in. Please try again.', [{
-                            text: 'OK',
-                            onPress: null,
-                            style: 'cancel'
-                        }]
-                    )
-                    let displayTime = '';
+                    'Administrative Message',
+                    'Failed to check in. Please try again.', [{
+                        text: 'OK',
+                        onPress: null,
+                        style: 'cancel'
+                    }]
+                    );
+                    displayTime = '';
                     return displayTime;
                 }
-            }
-            )
-            .catch(err => {
+            })
+            .catch((err) => {
                 console.log(err.message);
             })
-    }
+    };
 }
 
 export function checkOut(checkin_outInstance, displayTime) {
@@ -41,20 +40,20 @@ export function checkOut(checkin_outInstance, displayTime) {
                 checkin_outInstance
             }
         })
-            .then(res => {
-                let answer = res.data.status;
-                if (answer == 'success') {
+            .then((res) => {
+                const answer = res.data.status;
+                if (answer === 'success') {
                     return displayTime;
                 } else {
                     Alert.alert(
-                        'Administrative Message',
-                        'Failed to check out. Please try again.', [{
-                            text: 'OK',
-                            onPress: null,
-                            style: 'cancel'
-                        }]
-                    )
-                    let displayTime = '';
+                    'Administrative Message',
+                    'Failed to check out. Please try again.', [{
+                        text: 'OK',
+                        onPress: null,
+                        style: 'cancel'
+                    }]
+                    );
+                    displayTime = '';
                     return displayTime;
                 }
             }
@@ -62,7 +61,7 @@ export function checkOut(checkin_outInstance, displayTime) {
             .catch(err => {
                 console.log(err.message);
             })
-    }
+    };
 }
 
 export function release(percent, activeCircle) {
@@ -70,26 +69,26 @@ export function release(percent, activeCircle) {
         type: 'RELEASE',
         payload: { activeCircle, percent }
 
-    }
+    };
 }
 
 export function pressIn(percent) {
     return {
         type: 'PRESS_IN',
         payload: percent
-    }
+    };
 }
 
 export function enableButton(isOnSite) {
     return {
         type: 'ENABLE_BUTTON',
         payload: isOnSite
-    }
+    };
 }
 
 export function updateLocation(currentLocation) {
     return {
         type: 'UPDATE_LOCATION',
         payload: currentLocation
-    }
+    };
 }

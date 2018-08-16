@@ -1,4 +1,18 @@
+/* eslint no-unused-vars: 0 */
 import React from 'react';
+import {
+    Platform,
+    StyleSheet,
+    View,
+    Alert,
+    ScrollView
+} from 'react-native';
+import {
+    FormLabel,
+    FormInput,
+    Button
+} from 'react-native-elements';
+import { connect } from 'react-redux';
 import {
     firstNameEntry,
     lastNameEntry,
@@ -9,25 +23,6 @@ import {
     password2Entry,
     registerUser
 } from './RegisterActions';
-import {
-    Platform,
-    StyleSheet,
-    Text,
-    View,
-    TextInput,
-    Linking,
-    Alert,
-    ScrollView
-} from 'react-native';
-import {
-    FormLabel,
-    FormInput,
-    Button,
-    FormValidationMessage,
-    Icon
-} from 'react-native-elements';
-import { connect } from 'react-redux';
-
 
 class Register extends React.Component {
     constructor(props) {
@@ -41,48 +36,76 @@ class Register extends React.Component {
         this.handlePasswordInput = this.handlePasswordInput.bind(this);
         this.handlePassword2Input = this.handlePassword2Input.bind(this);
         this.handleRegistration = this.handleRegistration.bind(this);
-    };
+        this.sayHello = this.sayHello.bind(this);
+    }
 
     handleStudentIDInput(sID) {
         const { dispatch } = this.props;
         dispatch(studentIdEntry(sID));
-    };
+    }
 
     handleFirstNameInput(fname) {
         const { dispatch } = this.props;
         dispatch(firstNameEntry(fname));
-    };
+    }
 
     handleLastNameInput(lname) {
         const { dispatch } = this.props;
         dispatch(lastNameEntry(lname));
-    };
+    }
 
     handleEmailInput(email) {
         const { dispatch } = this.props;
         dispatch(emailEntry(email));
-    };
+    }
 
     handlePhoneInput(phone) {
         const { dispatch } = this.props;
         dispatch(phoneEntry(phone));
-    };
+    }
 
     handlePasswordInput(password) {
         const { dispatch } = this.props;
         dispatch(passwordEntry(password));
-    };
+    }
 
     handlePassword2Input(password2) {
         const { dispatch } = this.props;
         dispatch(password2Entry(password2));
-    };
+    }
+
+    sayHello() {
+        return Alert.alert(
+            'Hello',
+            '🍌baNaNa', [{
+                text: 'OK',
+                onPress: null,
+                style: 'cancel'
+            }]
+        );
+    }
 
     handleRegistration() {
-        const { firstName, lastName, studentId, email, phone, password, password2, deviceId, dispatch } = this.props;
+        const {
+            firstName,
+            lastName,
+            studentId,
+            email,
+            phone,
+            password,
+            password2,
+            deviceId,
+            dispatch
+        } = this.props;
         const { navigate } = this.props.navigation;
-        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (firstName == '' || lastName == '' || studentId == '' || email == '' || phone == '' || password == '' || password2 == '') {
+        const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+        if (firstName === ''
+            || lastName === ''
+            || studentId === ''
+            || email === ''
+            || phone === ''
+            || password === ''
+            || password2 === '') {
             Alert.alert(
                 'Field Error',
                 'Complete all fields to submit', [{
@@ -100,7 +123,7 @@ class Register extends React.Component {
                         onPress: null,
                         style: 'cancel'
                     }]
-                )
+                );
             } else {
                 if (password !== password2) {
                     Alert.alert(
@@ -110,7 +133,7 @@ class Register extends React.Component {
                             onPress: null,
                             style: 'cancel'
                         }]
-                    )
+                    );
                 } else {
                     if (reg.test(email) === false) {
                         Alert.alert(
@@ -120,7 +143,7 @@ class Register extends React.Component {
                                 onPress: null,
                                 style: 'cancel'
                             }]
-                        )
+                        );
                     } else {
                         const newStudentReg = {
                             studentId,
@@ -131,24 +154,14 @@ class Register extends React.Component {
                             password,
                             deviceId
 
-                        }
+                        };
                         dispatch(registerUser(newStudentReg, navigate));
                         navigate('Login');
                     }
                 }
             }
         }
-    };
-    sayHello() {
-        return Alert.alert(
-            'Hello',
-            '🍌baNaNa', [{
-                text: 'OK',
-                onPress: null,
-                style: 'cancel'
-            }]
-        )
-    };
+    }
 
     render() {
         return (
@@ -156,38 +169,81 @@ class Register extends React.Component {
                 <View style={styles.container}>
                     <View style={styles.formContainer}>
                         <FormLabel labelStyle={styles.formLabel}>Student ID</FormLabel>
-                        <FormInput autoCorrect={false} keyboardType='numeric' containerStyle={styles.inputContainer} onChangeText={this.handleStudentIDInput} />
+                        <FormInput
+                            autoCorrect={false}
+                            keyboardType='numeric'
+                            containerStyle={styles.inputContainer}
+                            onChangeText={this.handleStudentIDInput}
+                        />
                         <FormLabel labelStyle={styles.formLabel}>First Name </FormLabel>
-                        <FormInput autoCorrect={false} containerStyle={styles.inputContainer} onChangeText={this.handleFirstNameInput} />
+                        <FormInput
+                            autoCorrect={false}
+                            containerStyle={styles.inputContainer}
+                            onChangeText={this.handleFirstNameInput}
+                        />
                         <FormLabel labelStyle={styles.formLabel}>Last Name</FormLabel>
-                        <FormInput autoCorrect={false} containerStyle={styles.inputContainer} onChangeText={this.handleLastNameInput} />
+                        <FormInput
+                            autoCorrect={false}
+                            containerStyle={styles.inputContainer}
+                            onChangeText={this.handleLastNameInput}
+                        />
                         <FormLabel labelStyle={styles.formLabel}>Email</FormLabel>
-                        <FormInput autoCorrect={false} keyboardType='email-address' containerStyle={styles.inputContainer} onChangeText={this.handleEmailInput} />                      
+                        <FormInput
+                            autoCorrect={false}
+                            keyboardType='email-address'
+                            containerStyle={styles.inputContainer}
+                            onChangeText={this.handleEmailInput}
+                        />
                         <FormLabel labelStyle={styles.formLabel}>Phone Number</FormLabel>
-                        <FormInput autoCorrect={false} keyboardType='numeric' containerStyle={styles.inputContainer} onChangeText={this.handlePhoneInput} />
+                        <FormInput
+                            autoCorrect={false}
+                            keyboardType='numeric'
+                            containerStyle={styles.inputContainer}
+                            onChangeText={this.handlePhoneInput}
+                        />
                         <FormLabel labelStyle={styles.formLabel}>Password</FormLabel>
-                        <FormInput autoCorrect={false} textContentType='password' secureTextEntry={true} containerStyle={styles.inputContainer} onChangeText={this.handlePasswordInput} />
+                        <FormInput
+                            autoCorrect={false}
+                            textContentType='password'
+                            secureTextEntry={true}
+                            containerStyle={styles.inputContainer}
+                            onChangeText={this.handlePasswordInput}
+                        />
                         <FormLabel labelStyle={styles.formLabel}>Confirm Password</FormLabel>
-                        <FormInput autoCorrect={false} textContentType='password' secureTextEntry={true} containerStyle={styles.inputContainer} onChangeText={this.handlePassword2Input} />
+                        <FormInput
+                            autoCorrect={false}
+                            textContentType='password'
+                            secureTextEntry={true}
+                            containerStyle={styles.inputContainer}
+                            onChangeText={this.handlePassword2Input}
+                        />
                     </View>
-                    <Button style={styles.button}
+                    <Button
+                        style={styles.button}
                         onPress={this.handleRegistration}
-                        backgroundColor={'rgb(100,171,221)'}
+                        backgroundColor='rgb(100,171,221)'
                         borderRadius={4}
-                        color={'rgb(39,44,53)'}
+                        color='rgb(39,44,53)'
                         medium
-                        icon={{ name: 'sign-in', type: 'font-awesome', color: 'rgb(39,44,53)' }}
+                        icon={{
+                            name: 'sign-in',
+                            type: 'font-awesome',
+                            color: 'rgb(39,44,53)'
+                        }}
                         title='Register'
-                        fontFamily='Mwnlo' />
+                        fontFamily='Mwnlo'
+                    />
                 </View>
-                <Button style={styles.button}
-                    onPress={this.sayHello.bind(this)}
-                    backgroundColor={'transparent'}
-                    borderRadius={4} />
+                <Button
+                    style={styles.button}
+                    onPress={this.sayHello}
+                    backgroundColor='transparent'
+                    borderRadius={4}
+                />
             </ScrollView>
-        )
-    };
-};
+        );
+    }
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -202,7 +258,7 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 50,
         marginBottom: 20,
-        width: 320,
+        width: 320
     },
     formContainer: {
         width: 350,
@@ -211,7 +267,7 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         borderBottomWidth: Platform.OS === 'ios' ? 1 : 0,
-        borderBottomColor: 'rgb(36,47,73)',
+        borderBottomColor: 'rgb(36,47,73)'
     },
     formLabel: {
         backgroundColor: '#ebecf0',
@@ -230,6 +286,6 @@ function mapStoreToProps(store) {
         password2: store.registerData.password2,
         deviceId: store.registerData.deviceId
     };
-};
+}
 
 export default connect(mapStoreToProps)(Register);
