@@ -4,7 +4,7 @@ import { Alert } from 'react-native';
 export function checkIn(checkin_outInstance, displayTime) {
     return {
         type: 'CHECK_IN',
-        payload: axios.get('http://20f6ee5a.ngrok.io/checkin', {
+        payload: axios.get('https://f2baf8d7.ngrok.io/checkin', {
             params: {
                 checkin_outInstance
             }
@@ -35,7 +35,7 @@ export function checkIn(checkin_outInstance, displayTime) {
 export function checkOut(checkin_outInstance, displayTime) {
     return {
         type: 'CHECK_OUT',
-        payload: axios.get('http://20f6ee5a.ngrok.io/checkin', {
+        payload: axios.get('https://f2baf8d7.ngrok.io/checkin', {
             params: {
                 checkin_outInstance
             }

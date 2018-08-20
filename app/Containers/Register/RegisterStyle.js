@@ -37,9 +37,14 @@ export let navigateStyle = {
   headerStyle: {
       backgroundColor: colors.originText
   },
+  headerLeft: null,
   headerTintColor: colors.originBlue,
   headerTitleStyle: {
-      fontFamily: originFonts.originMwnlo,
-      fontWeight: 'bold'
+    flex: 1,
+    fontFamily: originFonts.originMwnlo,
+    fontWeight: 'normal',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center'
   }
 };

@@ -60,8 +60,13 @@ export const navigateStyle = {
   headerStyle: {
     backgroundColor: colors.originText
   },
+  headerLeft: null,
   headerTintColor: colors.originBlue,
   headerTitleStyle: {
+    flex: 1,
     fontFamily: originFonts.originMwnlo,
-    fontWeight: 'bold'
+    fontWeight: 'normal',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
 }};

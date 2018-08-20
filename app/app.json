@@ -21,10 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.oca.OCApp"
     },
     "android": {
-      "package": "com.sdjs.SDJSapp",
+      "package": "com.oca.OCApp",
       "splash": {
         "resizeMode": "contain",
         "backgroundColor": "#ffffff",
