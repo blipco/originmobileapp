@@ -26,7 +26,7 @@ app.get('/register', (req, res) => {
     studentId: req.query.studentId,
     email: req.query.email
   }
-  axios.get('https://f2baf8d7.ngrok.io/studentConfirmationTest', newUser)
+  axios.get('https://origin-mobile-app.now.sh/studentConfirmationTest', newUser)
     .then(response => {
       res.send(response.data);
     })
@@ -50,7 +50,7 @@ app.get('/studentConfirmationTest', (req, res) => {
 app.get('/checkin', (req, res) => {
   const checkInInstance = req.query;
 
-  axios.get('https://f2baf8d7.ngrok.io/checkInTest', checkInInstance)
+  axios.get('https://origin-mobile-app.now.sh/checkInTest', checkInInstance)
     .then(response => {
       res.send(response.data);
     })
