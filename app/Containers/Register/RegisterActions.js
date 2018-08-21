@@ -62,7 +62,7 @@ export function registerUser(newUserReg, navigate) {
 
     return {
         type: 'USER_REGISTRATION',
-        payload: axios.get('https://f2baf8d7.ngrok.io/register', {    //check if user is actually a student
+        payload: axios.get('https://origin-mobile-app.now.sh/register', {    //check if user is actually a student
             params: {
                 studentId: newUserReg.studentId,
                 email: newUserReg.email
@@ -71,7 +71,7 @@ export function registerUser(newUserReg, navigate) {
             .then(result => {
                 answer = result.data.status;
                 if (answer == true) {
-                    axios.post('https://f2baf8d7.ngrok.io/api/users', newUserReg) // user is a student so post to DB
+                    axios.post('https://origin-mobile-app.now.sh/api/users', newUserReg) // user is a student so post to DB
                         .then(response => {
                             return response.data;
                         })
