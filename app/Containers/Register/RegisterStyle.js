@@ -30,7 +30,7 @@ export let registerStyle = {
   formLabel: {
       color: colors.originDarkBackground
   }
-}
+};
 
 export let navigateStyle = {
   title: 'Register',

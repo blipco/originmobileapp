@@ -16,7 +16,7 @@ export function loginEntry(loginObj, navigate) {
           return axios.patch(`https://f2baf8d7.ngrok.io/api/users/${studentId}?access_token=${accessToken}`, { deviceId })
             .then(response => {
               if (response.status === 200) {
-                navigate('Checkin')
+                navigate('Checkin');
               }
               return response.data;
             })

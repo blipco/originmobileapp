@@ -5,7 +5,7 @@ import Register from './Register';
 import { navigateStyle } from './RegisterStyle';
 
 export default class RegisterScreen extends React.Component {
-    static navigationOptions = navigateStyle
+    static navigationOptions = navigateStyle;
 
     render() {
         return (

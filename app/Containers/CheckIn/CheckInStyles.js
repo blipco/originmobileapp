@@ -68,5 +68,5 @@ export const navigateStyle = {
     fontWeight: 'normal',
     alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'center',
+    textAlign: 'center'
 }};

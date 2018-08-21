@@ -177,8 +177,7 @@ class CheckIn extends React.Component {
       isCheckedIn
     } = this.props;
 
-    const styles = StyleSheet.create(checkInStyle)
-
+    const styles = StyleSheet.create(checkInStyle);
 
     return (
         <View style={styles.container}>
