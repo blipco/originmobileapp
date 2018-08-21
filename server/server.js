@@ -26,7 +26,7 @@ app.get('/register', (req, res) => {
     studentId: req.query.studentId,
     email: req.query.email
   }
-  axios.get('http://20f6ee5a.ngrok.io/studentConfirmationTest', newUser)
+  axios.get('https://f2baf8d7.ngrok.io/studentConfirmationTest', newUser)
     .then(response => {
       res.send(response.data);
     })
@@ -50,7 +50,7 @@ app.get('/studentConfirmationTest', (req, res) => {
 app.get('/checkin', (req, res) => {
   const checkInInstance = req.query;
 
-  axios.get('http://20f6ee5a.ngrok.io/checkInTest', checkInInstance)
+  axios.get('https://f2baf8d7.ngrok.io/checkInTest', checkInInstance)
     .then(response => {
       res.send(response.data);
     })

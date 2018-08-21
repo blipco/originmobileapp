@@ -9,14 +9,14 @@ export function loginEntry(loginObj, navigate) {
 
   return {
     type: 'LOGIN_ENTRY',
-    payload: axios.post('http://20f6ee5a.ngrok.io/api/users/login', { email, password })
+    payload: axios.post('https://f2baf8d7.ngrok.io/api/users/login', { email, password })
       .then(response => {
         const accessToken = response.data.id;
         const studentId = response.data.userId;
-          return axios.patch(`http://20f6ee5a.ngrok.io/api/users/${studentId}?access_token=${accessToken}`, { deviceId })
+          return axios.patch(`https://f2baf8d7.ngrok.io/api/users/${studentId}?access_token=${accessToken}`, { deviceId })
             .then(response => {
               if (response.status === 200) {
-                navigate('Checkin')
+                navigate('Checkin');
               }
               return response.data;
             })

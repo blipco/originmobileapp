@@ -3,20 +3,21 @@ import React from 'react';
 import moment from 'moment';
 import ProgressCircle from 'react-native-progress-circle';
 import {
-  StyleSheet,
   TouchableHighlight,
   Image,
   Text,
   View,
   Alert,
   Platform,
-  ScrollView
+  StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Constants, Location, Permissions } from 'expo';
 import geolib from 'geolib';
 import fingerprint from '../../assets/images/fingerprint-outline-variant.png';
 import refresh from '../../assets/images/refresh.png';
+import { checkInStyle } from './CheckInStyles';
+
 import {
   checkIn,
   updateLocation,
@@ -176,8 +177,9 @@ class CheckIn extends React.Component {
       isCheckedIn
     } = this.props;
 
+    const styles = StyleSheet.create(checkInStyle);
+
     return (
-      <ScrollView keyboardDismissMode='on-drag'>
         <View style={styles.container}>
           <Text style={styles.textStyle}>PUNCH CLOCK</Text>
           <ProgressCircle
@@ -213,64 +215,9 @@ class CheckIn extends React.Component {
             <Image style={styles.icon} source={refresh} />
           </TouchableHighlight>
         </View>
-
-      </ScrollView>
     );
   }
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 55,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  imageContainerPink: {
-    height: 256,
-    width: 256,
-    borderRadius: 128,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30,
-    backgroundColor: '#FF566F'
-  },
-  imageContainerGreen: {
-    height: 256,
-    width: 256,
-    borderRadius: 128,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30,
-    backgroundColor: '#8BC670'
-  },
-  image: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    height: 128,
-    width: 128,
-    borderRadius: 64
-  },
-  icon: {
-    marginTop: 55,
-    height: 30,
-    width: 30
-  },
-  textStyle: {
-    fontSize: 45,
-    color: '#64ABDD',
-    marginBottom: 20,
-    textAlign: 'center'
-  },
-  textStyle1: {
-    fontSize: 25,
-    color: '#64ABDD',
-    marginTop: 30,
-    textAlign: 'center'
-  }
-});
 
 function mapStoreToProps(store) {
   return {

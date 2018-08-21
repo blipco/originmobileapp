@@ -4,8 +4,7 @@ import {
     Platform,
     StyleSheet,
     View,
-    Alert,
-    ScrollView
+    Alert
 } from 'react-native';
 import {
     FormLabel,
@@ -23,6 +22,7 @@ import {
     password2Entry,
     registerUser
 } from './RegisterActions';
+import { registerStyle } from './RegisterStyle';
 
 class Register extends React.Component {
     constructor(props) {
@@ -164,8 +164,8 @@ class Register extends React.Component {
     }
 
     render() {
+        const styles = StyleSheet.create(registerStyle);
         return (
-            <ScrollView keyboardDismissMode='on-drag'>
                 <View style={styles.container}>
                     <View style={styles.formContainer}>
                         <FormLabel labelStyle={styles.formLabel}>Student ID</FormLabel>
@@ -233,47 +233,16 @@ class Register extends React.Component {
                         title='Register'
                         fontFamily='Mwnlo'
                     />
+                    <Button
+                        style={styles.button}
+                        onPress={this.sayHello}
+                        backgroundColor='transparent'
+                        borderRadius={4}
+                    />
                 </View>
-                <Button
-                    style={styles.button}
-                    onPress={this.sayHello}
-                    backgroundColor='transparent'
-                    borderRadius={4}
-                />
-            </ScrollView>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#ebecf0',
-        alignItems: 'center',
-        paddingTop: 30,
-        paddingBottom: 250,
-        marginBottom: 0
-
-    },
-    button: {
-        marginTop: 50,
-        marginBottom: 20,
-        width: 320
-    },
-    formContainer: {
-        width: 350,
-        borderColor: 'transparent',
-        borderBottomWidth: 0
-    },
-    inputContainer: {
-        borderBottomWidth: Platform.OS === 'ios' ? 1 : 0,
-        borderBottomColor: 'rgb(36,47,73)'
-    },
-    formLabel: {
-        backgroundColor: '#ebecf0',
-        color: '#20252C'
-    }
-});
 
 function mapStoreToProps(store) {
     return {
