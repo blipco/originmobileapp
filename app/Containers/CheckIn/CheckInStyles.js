@@ -5,9 +5,10 @@ export let checkInStyle = {
   container: {
     flex: 1,
     backgroundColor: colors.originGrey,
-    marginTop: 55,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: 55,
+    paddingBottom: 100
   },
   imageContainerPink: {
     height: 256,
