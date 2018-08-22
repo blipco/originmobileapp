@@ -79,7 +79,7 @@ class CheckIn extends React.Component {
     const isOnSite = geolib.isPointInCircle(
       { longitude, latitude },
       originLocation,
-      25
+      20
     );
     dispatch(enableButton(isOnSite));
 
