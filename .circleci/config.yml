@@ -28,7 +28,7 @@ jobs:
           command: sudo npm install --global --unsafe-perm now
       - run:
           name: Deploy using Now
-          command: now -t ${NOW_TOKEN} -T origin -e MONGO_URI && alias
+          command: now -e MONGO_URI -e NODE_ENV -t ${NOW_TOKEN} -T origin && alias
 workflows:
   version: 2
   build:
