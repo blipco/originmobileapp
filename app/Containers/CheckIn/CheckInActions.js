@@ -10,8 +10,10 @@ export function checkIn(checkin_outInstance, displayTime) {
             }
         })
             .then((result) => {
-                const answer = result.data.status;
+                const answer = result.data;
+                console.log('checkin answer', answer);
                 if (answer === 'success') {
+                    console.log(displayTime);
                     return displayTime;
                 } else {
                     Alert.alert(
@@ -40,8 +42,9 @@ export function checkOut(checkin_outInstance, displayTime) {
                 checkin_outInstance
             }
         })
-            .then((res) => {
-                const answer = res.data.status;
+            .then((result) => {
+                const answer = result.data;
+                console.log('checkout answer', answer);
                 if (answer === 'success') {
                     return displayTime;
                 } else {
