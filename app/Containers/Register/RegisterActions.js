@@ -69,14 +69,22 @@ export function registerUser(newUserReg, navigate) {
             }
         })
             .then(result => {
-                answer = result.data.status;
-                if (answer == true) {
+                let answer = result.data;
+                if (answer) {
                     axios.post('https://origin-mobile-app.now.sh/api/users', newUserReg) // user is a student so post to DB
                         .then(response => {
                             return response.data;
                         })
                         .catch(err => {
                             console.log(err.message);
+                            Alert.alert( // user is not a student
+                                'Administrative Message',
+                                'Email has already been registered. Please try logging in.', [{
+                                    text: 'OK',
+                                    onPress: null,
+                                    style: 'cancel'
+                                }]
+                            );
                         });
                     navigate('Login');
                 } else {

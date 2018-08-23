@@ -26,7 +26,7 @@ app.get('/register', (req, res) => {
     studentId: req.query.studentId,
     email: req.query.email
   }
-  axios.get('https://origin-mobile-app.now.sh/studentConfirmationTest', newUser)
+  axios.get(`https://startnow.origincodeacademy.com/api/Proxies/validateStudentByEmail?apiToken=a0d440548980c0912e4ab48108439d303f6f882e&moodleUserId=${newUser.studentId}&email=${newUser.email}`)
     .then(response => {
       res.send(response.data);
     })
@@ -35,44 +35,17 @@ app.get('/register', (req, res) => {
     })
 })
 
-app.get('/studentConfirmationTest', (req, res) => {
-  //user is a student
-  const confirmed = {
-    status: true
-  }
-  //user is not a student
-  const denied = {
-    status: false
-  }
-  res.send(confirmed);
-})
-
 app.get('/checkin', (req, res) => {
-  const checkInInstance = req.query;
-
-  axios.get('https://origin-mobile-app.now.sh/checkInTest', checkInInstance)
+  
+  let checkIn = JSON.parse(req.query.checkin_outInstance);
+  
+  axios.get(`https://startnow.origincodeacademy.com/api/Proxies/checkIn?apiToken=a0d440548980c0912e4ab48108439d303f6f882e&moodleUserId=${checkIn.id}&isoDate=${checkIn.isoDate}&dow=${checkIn.dow}&room=${checkIn.room}&building=${checkIn.building}`)
     .then(response => {
-      res.send(response.data);
+       res.send(response.data);
     })
     .catch(error => {
       res.send(error.message);
     })
-})
-
-app.get('/checkInTest', (req, res) => {
-  //successful check in
-  const success = {
-    status: "success"
-  }
-  //failed to check in
-  const error = {
-    error: {
-      statusCode: 400,
-      name: "Error",
-      message: "failure"
-    }
-  }
-  res.send(success);
 })
 
 // Bootstrap the application, configure models, datasources and middleware.
